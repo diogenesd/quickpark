@@ -1,0 +1,106 @@
+<?php
+
+namespace Admin\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Noticia
+ *
+ * @ORM\Table(name="noticia", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_noticia_categoria1_idx", columns={"categoria_id"})})
+ * @ORM\Entity
+ */
+class Noticia
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="usuario_aprovacao_id", type="integer", nullable=true, options={"unsigned"=true})
+     */
+    private $usuarioAprovacaoId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titulo", type="string", length=255, nullable=false)
+     */
+    private $titulo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descricao", type="text", nullable=true)
+     */
+    private $descricao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="chamada", type="text", length=65535, nullable=true)
+     */
+    private $chamada;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nivel", type="string", length=1, nullable=false)
+     */
+    private $nivel = 'A';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_publicacao", type="datetime", nullable=true)
+     */
+    private $dataPublicacao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=45, nullable=false)
+     */
+    private $status;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ativo", type="integer", nullable=false)
+     */
+    private $ativo = '1';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_criacao", type="datetime", nullable=false)
+     */
+    private $dataCriacao = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_modificacao", type="datetime", nullable=false)
+     */
+    private $dataModificacao = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \Admin\Entity\Categoria
+     *
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\Categoria")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="categoria_id", referencedColumnName="id")
+     * })
+     */
+    private $categoria;
+
+
+}
+

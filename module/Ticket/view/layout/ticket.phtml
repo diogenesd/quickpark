@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+    <head>
+        <meta charset="utf-8" />
+        <title>Área administrativa</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <?php $this->headLink()->prependStylesheet($this->basePath('/min?g=admin-css')); ?>
+        <?php echo $this->headLink(); ?>
+    </head>
+    <body>
+        <div class="app">
+            <!-- aside -->
+            <?php echo $this->partial('layout/flashMessage'); ?>
+            
+            <!-- content -->
+            <div id="content" class="app-content" role="main">
+                <?php echo $this->content; ?>
+            </div>
+
+        </div>
+        <script type="text/javascript">var baseUrl = '<?php echo $this->basePath(); ?>/';</script>
+        <?php $this->headScript()->prependFile($this->basePath('/min?g=login-js'));?>
+        <?php echo $this->headScript();?>
+    </body>
+</html>

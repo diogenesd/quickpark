@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    
+    <changeSet id="1" author="rodrigo.heinzle">
+        <sql>
+            -- MySQL dump 10.13  Distrib 5.7.12, for osx10.9 (x86_64)
+            --
+            -- Host: localhost    Database: quickpark
+            -- ------------------------------------------------------
+            -- Server version	5.6.26
+
+            /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+            /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+            /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+            /*!40101 SET NAMES utf8 */;
+            /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+            /*!40103 SET TIME_ZONE='+00:00' */;
+            /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+            /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+            /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+            /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+            --
+            -- Table structure for table `bilhete`
+            --
+
+            DROP TABLE IF EXISTS `bilhete`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `bilhete` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `estabelecimento_id` int(11) unsigned NOT NULL,
+            `codigo` varchar(255) NOT NULL,
+            `entrada` datetime NOT NULL,
+            `saida` datetime DEFAULT NULL,
+            `active` int(1) unsigned NOT NULL DEFAULT '1',
+            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`),
+            KEY `fk_bilhete_estabelecimento_idx` (`estabelecimento_id`),
+            CONSTRAINT `fk_bilhete_estabelecimento` FOREIGN KEY (`estabelecimento_id`) REFERENCES `estabelecimento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `bilhete`
+            --
+
+            LOCK TABLES `bilhete` WRITE;
+            /*!40000 ALTER TABLE `bilhete` DISABLE KEYS */;
+            /*!40000 ALTER TABLE `bilhete` ENABLE KEYS */;
+            UNLOCK TABLES;
+
+            --
+            -- Table structure for table `cliente`
+            --
+
+            DROP TABLE IF EXISTS `cliente`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `cliente` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `user_id` int(11) unsigned NOT NULL,
+            PRIMARY KEY (`id`),
+            KEY `fk_cliente_user_idx` (`user_id`),
+            CONSTRAINT `fk_cliente_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `cliente`
+            --
+
+            LOCK TABLES `cliente` WRITE;
+            /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
+            /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
+            UNLOCK TABLES;
+
+            --
+            -- Table structure for table `configuracao`
+            --
+
+            DROP TABLE IF EXISTS `configuracao`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `configuracao` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `estabelecimento_id` int(11) unsigned NOT NULL,
+            `tolerancia_entrada` int(11) NOT NULL,
+            `tolerancia_saida` int(11) NOT NULL,
+            `valor_hora` decimal(10,2) NOT NULL,
+            `valor_diaria` decimal(10,2) DEFAULT NULL,
+            `valor_mensal` decimal(10,2) DEFAULT NULL,
+            `active` int(1) unsigned NOT NULL DEFAULT '1',
+            `created_on` datetime NOT NULL,
+            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`),
+            KEY `fk_configuracao_estabelecimento_idx` (`estabelecimento_id`),
+            CONSTRAINT `fk_configuracao_estabelecimento` FOREIGN KEY (`estabelecimento_id`) REFERENCES `estabelecimento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `configuracao`
+            --
+
+            LOCK TABLES `configuracao` WRITE;
+            /*!40000 ALTER TABLE `configuracao` DISABLE KEYS */;
+            /*!40000 ALTER TABLE `configuracao` ENABLE KEYS */;
+            UNLOCK TABLES;
+
+            --
+            -- Table structure for table `endereco`
+            --
+
+            DROP TABLE IF EXISTS `endereco`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `endereco` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `logradouro` varchar(255) DEFAULT NULL,
+            `numero` varchar(45) DEFAULT NULL,
+            `cep` varchar(9) DEFAULT NULL,
+            `complemento` varchar(255) DEFAULT NULL,
+            `municipio` varchar(255) DEFAULT NULL,
+            `uf` varchar(255) DEFAULT NULL,
+            `active` int(1) unsigned NOT NULL DEFAULT '1',
+            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `endereco`
+            --
+
+            LOCK TABLES `endereco` WRITE;
+            /*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
+            /*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
+            UNLOCK TABLES;
+
+            --
+            -- Table structure for table `estabelecimento`
+            --
+
+            DROP TABLE IF EXISTS `estabelecimento`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `estabelecimento` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `endereco_id` int(11) unsigned NOT NULL,
+            `nome` varchar(255) NOT NULL,
+            `cnpj` varchar(18) NOT NULL,
+            `active` int(1) unsigned NOT NULL DEFAULT '1',
+            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`),
+            UNIQUE KEY `nome_UNIQUE` (`nome`),
+            UNIQUE KEY `cnpj_UNIQUE` (`cnpj`),
+            KEY `fk_estabelecimento_endereco_idx` (`endereco_id`),
+            CONSTRAINT `fk_estabelecimento_endereco` FOREIGN KEY (`endereco_id`) REFERENCES `endereco` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `estabelecimento`
+            --
+
+            LOCK TABLES `estabelecimento` WRITE;
+            /*!40000 ALTER TABLE `estabelecimento` DISABLE KEYS */;
+            /*!40000 ALTER TABLE `estabelecimento` ENABLE KEYS */;
+            UNLOCK TABLES;
+
+            --
+            -- Table structure for table `forma_pagamento`
+            --
+
+            DROP TABLE IF EXISTS `forma_pagamento`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `forma_pagamento` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `descricao` varchar(45) NOT NULL,
+            `active` int(1) unsigned NOT NULL DEFAULT '1',
+            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`),
+            UNIQUE KEY `descricao_UNIQUE` (`descricao`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `forma_pagamento`
+            --
+
+            LOCK TABLES `forma_pagamento` WRITE;
+            /*!40000 ALTER TABLE `forma_pagamento` DISABLE KEYS */;
+            /*!40000 ALTER TABLE `forma_pagamento` ENABLE KEYS */;
+            UNLOCK TABLES;
+
+            --
+            -- Table structure for table `funcionario`
+            --
+
+            DROP TABLE IF EXISTS `funcionario`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `funcionario` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `user_id` int(11) unsigned NOT NULL,
+            PRIMARY KEY (`id`),
+            KEY `fk_funcionario_user_idx` (`user_id`),
+            CONSTRAINT `fk_funcionario_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `funcionario`
+            --
+
+            LOCK TABLES `funcionario` WRITE;
+            /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
+            /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
+            UNLOCK TABLES;
+
+            --
+            -- Table structure for table `log`
+            --
+
+            DROP TABLE IF EXISTS `log`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `log` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `user_id` int(11) unsigned NOT NULL,
+            `acao` text NOT NULL,
+            `ip` varchar(255) NOT NULL,
+            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`),
+            KEY `fk_log_user_idx` (`user_id`),
+            CONSTRAINT `fk_log_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `log`
+            --
+
+            LOCK TABLES `log` WRITE;
+            /*!40000 ALTER TABLE `log` DISABLE KEYS */;
+            /*!40000 ALTER TABLE `log` ENABLE KEYS */;
+            UNLOCK TABLES;
+
+            --
+            -- Table structure for table `pagamento`
+            --
+
+            DROP TABLE IF EXISTS `pagamento`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `pagamento` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `bilhete_id` int(11) unsigned NOT NULL,
+            `cliente_id` int(11) unsigned DEFAULT NULL,
+            `funcionario_id` int(11) unsigned DEFAULT NULL,
+            `forma_pagamento_id` int(11) unsigned NOT NULL,
+            `valor` decimal(10,2) unsigned NOT NULL,
+            `active` int(1) unsigned NOT NULL DEFAULT '1',
+            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`),
+            KEY `fk_pagamento_forma_pagamento_idx` (`forma_pagamento_id`),
+            KEY `fk_pagamento_funcionario_idx` (`funcionario_id`),
+            KEY `fk_pagamento_cliente_idx` (`cliente_id`),
+            KEY `fk_pagamento_bilhete_idx` (`bilhete_id`),
+            CONSTRAINT `fk_pagamento_bilhete` FOREIGN KEY (`bilhete_id`) REFERENCES `bilhete` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+            CONSTRAINT `fk_pagamento_cliente` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+            CONSTRAINT `fk_pagamento_forma_pagamento` FOREIGN KEY (`forma_pagamento_id`) REFERENCES `forma_pagamento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+            CONSTRAINT `fk_pagamento_funcionario` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `pagamento`
+            --
+
+            LOCK TABLES `pagamento` WRITE;
+            /*!40000 ALTER TABLE `pagamento` DISABLE KEYS */;
+            /*!40000 ALTER TABLE `pagamento` ENABLE KEYS */;
+            UNLOCK TABLES;
+
+            --
+            -- Table structure for table `permission`
+            --
+
+            DROP TABLE IF EXISTS `permission`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `permission` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `resource_id` int(11) unsigned NOT NULL,
+            `permission_name` varchar(255) NOT NULL,
+            `active` int(1) unsigned NOT NULL DEFAULT '1',
+            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`),
+            KEY `fk_permission_resource_idx` (`resource_id`),
+            CONSTRAINT `fk_permission_resource` FOREIGN KEY (`resource_id`) REFERENCES `resource` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+            ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `permission`
+            --
+
+            LOCK TABLES `permission` WRITE;
+            /*!40000 ALTER TABLE `permission` DISABLE KEYS */;
+            INSERT INTO `permission` VALUES (1,1,'index',1,'2016-09-29 18:25:47','2016-09-29 18:25:47'),(2,3,'index',1,'2016-09-29 18:25:47','2016-09-29 18:25:47');
+            /*!40000 ALTER TABLE `permission` ENABLE KEYS */;
+            UNLOCK TABLES;
+
+            --
+            -- Table structure for table `resource`
+            --
+
+            DROP TABLE IF EXISTS `resource`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `resource` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `resource_name` varchar(255) NOT NULL,
+            `active` int(1) unsigned NOT NULL DEFAULT '1',
+            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `resource`
+            --
+
+            LOCK TABLES `resource` WRITE;
+            /*!40000 ALTER TABLE `resource` DISABLE KEYS */;
+            INSERT INTO `resource` VALUES (1,'Admin\\Controller\\Index',1,'2016-09-29 18:25:47','2016-09-29 18:25:47'),(2,'Login\\Controller\\Index',1,'2016-09-29 18:25:47','2016-09-29 18:25:47'),(3,'Admin\\Controller\\Teste',1,'2016-09-29 18:25:47','2016-09-29 18:25:47');
+            /*!40000 ALTER TABLE `resource` ENABLE KEYS */;
+            UNLOCK TABLES;
+
+            --
+            -- Table structure for table `role`
+            --
+
+            DROP TABLE IF EXISTS `role`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `role` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `role_name` varchar(255) NOT NULL,
+            `active` int(1) unsigned NOT NULL DEFAULT '1',
+            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `role`
+            --
+
+            LOCK TABLES `role` WRITE;
+            /*!40000 ALTER TABLE `role` DISABLE KEYS */;
+            INSERT INTO `role` VALUES (1,'Admin',1,'2016-09-29 18:25:47','2016-09-29 18:25:47'),(2,'Master',1,'2016-09-29 18:25:47','2016-09-29 18:25:47');
+            /*!40000 ALTER TABLE `role` ENABLE KEYS */;
+            UNLOCK TABLES;
+
+            --
+            -- Table structure for table `role_permission`
+            --
+
+            DROP TABLE IF EXISTS `role_permission`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `role_permission` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `role_id` int(11) unsigned NOT NULL,
+            `permission_id` int(11) unsigned NOT NULL,
+            `active` int(1) unsigned NOT NULL DEFAULT '1',
+            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`),
+            KEY `fk_role_permission_permission_idx` (`role_id`),
+            KEY `fk_role_permission_role_idx` (`permission_id`),
+            CONSTRAINT `fk_role_permission_permission` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+            CONSTRAINT `fk_role_permission_role` FOREIGN KEY (`permission_id`) REFERENCES `permission` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+            ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `role_permission`
+            --
+
+            LOCK TABLES `role_permission` WRITE;
+            /*!40000 ALTER TABLE `role_permission` DISABLE KEYS */;
+            INSERT INTO `role_permission` VALUES (1,1,1,1,'2016-09-29 18:25:47','2016-09-29 18:25:47'),(2,1,2,1,'2016-09-29 18:25:47','2016-09-29 18:25:47');
+            /*!40000 ALTER TABLE `role_permission` ENABLE KEYS */;
+            UNLOCK TABLES;
+
+            --
+            -- Table structure for table `user`
+            --
+
+            DROP TABLE IF EXISTS `user`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `user` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `email` varchar(255) NOT NULL,
+            `password` varchar(255) NOT NULL,
+            `nome` varchar(255) NOT NULL,
+            `cpf` varchar(11) NOT NULL,
+            `active` int(1) unsigned NOT NULL DEFAULT '1',
+            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`),
+            UNIQUE KEY `email_UNIQUE` (`email`),
+            UNIQUE KEY `cpf_UNIQUE` (`cpf`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `user`
+            --
+
+            LOCK TABLES `user` WRITE;
+            /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+            INSERT INTO `user` VALUES (1,'rodrigo.heinzle@gmail.com','d7d833534a39afbac08ec536bed7ae9eeac45638','Rodrigo Heinzle','05660997996',1,'2016-09-29 18:25:47','2016-09-29 18:25:47'),(2,'master@gmail.com','d7d833534a39afbac08ec536bed7ae9eeac45638','Master','48006947015',1,'2016-09-29 18:25:47','2016-09-29 18:25:47');
+            /*!40000 ALTER TABLE `user` ENABLE KEYS */;
+            UNLOCK TABLES;
+
+            --
+            -- Table structure for table `user_role`
+            --
+
+            DROP TABLE IF EXISTS `user_role`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `user_role` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `user_id` int(11) unsigned NOT NULL,
+            `role_id` int(11) unsigned NOT NULL,
+            `active` int(1) unsigned NOT NULL DEFAULT '1',
+            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`),
+            KEY `fk_user_role_user_idx` (`user_id`),
+            KEY `fk_user_role_role_idx` (`role_id`),
+            CONSTRAINT `fk_user_role_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+            CONSTRAINT `fk_user_role_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+            ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `user_role`
+            --
+
+            LOCK TABLES `user_role` WRITE;
+            /*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
+            INSERT INTO `user_role` VALUES (1,1,1,1,'2016-09-29 18:25:47','2016-09-29 18:25:47'),(2,2,2,1,'2016-09-29 18:25:47','2016-09-29 18:25:47');
+            /*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
+            UNLOCK TABLES;
+
+            --
+            -- Table structure for table `whitelist`
+            --
+
+            DROP TABLE IF EXISTS `whitelist`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `whitelist` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `whitelist_name` varchar(255) NOT NULL,
+            `active` int(1) unsigned NOT NULL DEFAULT '1',
+            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `whitelist`
+            --
+
+            LOCK TABLES `whitelist` WRITE;
+            /*!40000 ALTER TABLE `whitelist` DISABLE KEYS */;
+            INSERT INTO `whitelist` VALUES (1,'Base/Controller/Error-index',1,'2016-09-29 18:25:47','2016-09-29 18:25:47'),(2,'Base/Controller/Error-permissiondenied',1,'2016-09-29 18:25:47','2016-09-29 18:25:47'),(3,'TpMinifyProxy-index',1,'2016-09-29 18:25:47','2016-09-29 18:25:47');
+            /*!40000 ALTER TABLE `whitelist` ENABLE KEYS */;
+            UNLOCK TABLES;
+            /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+            /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+            /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+            /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+            /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+            /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+            /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+            /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+            -- Dump completed on 2016-09-29 19:08:53
+        </sql>
+    </changeSet>
+    
+    <changeSet id="2" author="rodrigo.heinzle">
+        <sql>
+            ALTER TABLE `DATABASECHANGELOGLOCK` 
+            CHANGE COLUMN `LOCKED` `LOCKED` INT(1) NOT NULL;
+        </sql>
+    </changeSet>
+    
+    <changeSet id="3" author="rodrigo.heinzle">
+        <sql>
+            ALTER TABLE `DATABASECHANGELOG` 
+            ADD PRIMARY KEY (`ORDEREXECUTED`);
+        </sql>
+    </changeSet>
+    
+</databaseChangeLog>

@@ -1,0 +1,100 @@
+<?php
+
+namespace Admin\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Publicidade
+ *
+ * @ORM\Table(name="publicidade", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_publicidade_espaco_publicidade1_idx", columns={"espaco_publicidade_id"})})
+ * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Admin\Entity\PublicidadeRepository")
+ */
+class Publicidade
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="categoria_id", type="integer", nullable=true, options={"unsigned"=true})
+     */
+    private $categoriaId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titulo", type="string", length=255, nullable=false)
+     */
+    private $titulo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="arquivo", type="string", length=255, nullable=false)
+     */
+    private $arquivo;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_publicacao", type="date", nullable=false)
+     */
+    private $dataPublicacao;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_expiracao", type="date", nullable=true)
+     */
+    private $dataExpiracao;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="valor", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $valor;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ativo", type="integer", nullable=false)
+     */
+    private $ativo = '1';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_criacao", type="datetime", nullable=false)
+     */
+    private $dataCriacao = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_modificacao", type="datetime", nullable=false)
+     */
+    private $dataModificacao = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \Admin\Entity\EspacoPublicidade
+     *
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\EspacoPublicidade")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="espaco_publicidade_id", referencedColumnName="id")
+     * })
+     */
+    private $espacoPublicidade;
+
+
+}
+

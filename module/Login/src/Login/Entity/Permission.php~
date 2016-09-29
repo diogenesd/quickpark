@@ -1,0 +1,64 @@
+<?php
+
+namespace Login\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Permission
+ *
+ * @ORM\Table(name="permission", indexes={@ORM\Index(name="fk_permission_resource_idx", columns={"resource_id"})})
+ * @ORM\Entity
+ */
+class Permission
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="permission_name", type="string", length=255, nullable=false)
+     */
+    private $permissionName;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="active", type="integer", nullable=false, options={"unsigned"=true})
+     */
+    private $active = '1';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_on", type="datetime", nullable=false)
+     */
+    private $createdOn = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="modified_on", type="datetime", nullable=false)
+     */
+    private $modifiedOn = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \Login\Entity\Resource
+     *
+     * @ORM\ManyToOne(targetEntity="Login\Entity\Resource")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="resource_id", referencedColumnName="id")
+     * })
+     */
+    private $resource;
+
+
+}
+

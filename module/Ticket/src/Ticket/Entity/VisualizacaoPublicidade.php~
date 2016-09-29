@@ -1,0 +1,72 @@
+<?php
+
+namespace Admin\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * VisualizacaoPublicidade
+ *
+ * @ORM\Table(name="visualizacao_publicidade", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_visualizacao_publicidade_publicidade1_idx", columns={"publicidade_id"})})
+ * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Admin\Entity\VisualizacaoPublicidadeRepository")
+ */
+class VisualizacaoPublicidade
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="bigint", nullable=false, options={"unsigned"=true})
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ip", type="string", length=255, nullable=false)
+     */
+    private $ip;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descricao", type="text", length=65535, nullable=true)
+     */
+    private $descricao;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ativo", type="integer", nullable=false)
+     */
+    private $ativo = '1';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_criacao", type="datetime", nullable=false)
+     */
+    private $dataCriacao = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_modificacao", type="datetime", nullable=false)
+     */
+    private $dataModificacao = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \Admin\Entity\Publicidade
+     *
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\Publicidade")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="publicidade_id", referencedColumnName="id")
+     * })
+     */
+    private $publicidade;
+
+
+}
+

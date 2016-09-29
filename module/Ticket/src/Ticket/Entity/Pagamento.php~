@@ -1,0 +1,94 @@
+<?php
+
+namespace Ticket\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Pagamento
+ *
+ * @ORM\Table(name="pagamento", indexes={@ORM\Index(name="fk_pagamento_forma_pagamento_idx", columns={"forma_pagamento_id"}), @ORM\Index(name="fk_pagamento_funcionario_idx", columns={"funcionario_id"}), @ORM\Index(name="fk_pagamento_cliente_idx", columns={"cliente_id"}), @ORM\Index(name="fk_pagamento_bilhete_idx", columns={"bilhete_id"})})
+ * @ORM\Entity
+ */
+class Pagamento
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="valor", type="decimal", precision=10, scale=2, nullable=false)
+     */
+    private $valor;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="active", type="integer", nullable=false, options={"unsigned"=true})
+     */
+    private $active = '1';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_on", type="datetime", nullable=false)
+     */
+    private $createdOn = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="modified_on", type="datetime", nullable=false)
+     */
+    private $modifiedOn = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \Ticket\Entity\Bilhete
+     *
+     * @ORM\ManyToOne(targetEntity="Ticket\Entity\Bilhete")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="bilhete_id", referencedColumnName="id")
+     * })
+     */
+    private $bilhete;
+
+    /**
+     * @var \Ticket\Entity\Cliente
+     *
+     * @ORM\ManyToOne(targetEntity="Ticket\Entity\Cliente")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
+     * })
+     */
+    private $cliente;
+
+    /**
+     * @var \Ticket\Entity\FormaPagamento
+     *
+     * @ORM\ManyToOne(targetEntity="Ticket\Entity\FormaPagamento")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="forma_pagamento_id", referencedColumnName="id")
+     * })
+     */
+    private $formaPagamento;
+
+    /**
+     * @var \Ticket\Entity\Funcionario
+     *
+     * @ORM\ManyToOne(targetEntity="Ticket\Entity\Funcionario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="funcionario_id", referencedColumnName="id")
+     * })
+     */
+    private $funcionario;
+
+
+}
+

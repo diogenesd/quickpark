@@ -1,0 +1,36 @@
+<?php
+
+namespace Admin\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Funcionario
+ *
+ * @ORM\Table(name="funcionario", indexes={@ORM\Index(name="fk_funcionario_user_idx", columns={"user_id"})})
+ * @ORM\Entity
+ */
+class Funcionario
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Admin\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     */
+    private $user;
+
+
+}
+

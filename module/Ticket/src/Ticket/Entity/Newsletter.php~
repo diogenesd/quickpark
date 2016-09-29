@@ -1,0 +1,56 @@
+<?php
+
+namespace Admin\Entity;
+
+use Base\Entity\AbstractEntity;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Newsletter
+ *
+ * @ORM\Table(name="newsletter", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
+ * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Admin\Entity\NewsletterRepository")
+ */
+class Newsletter
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     */
+    private $email;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ativo", type="integer", nullable=false)
+     */
+    private $ativo = '1';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_criacao", type="datetime", nullable=false)
+     */
+    private $dataCriacao = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_modificacao", type="datetime", nullable=false)
+     */
+    private $dataModificacao = 'CURRENT_TIMESTAMP';
+
+
+}
+

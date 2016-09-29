@@ -1,0 +1,76 @@
+<?php
+
+namespace Admin\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * EspacoPublicidade
+ *
+ * @ORM\Table(name="espaco_publicidade", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
+ * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Admin\Entity\EspacoPublicidadeRepository")
+ */
+class EspacoPublicidade
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titulo", type="string", length=255, nullable=false)
+     */
+    private $titulo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tamanho", type="string", length=255, nullable=false)
+     */
+    private $tamanho;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descricao", type="text", length=65535, nullable=true)
+     */
+    private $descricao;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="valor", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $valor;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ativo", type="integer", nullable=false)
+     */
+    private $ativo = '1';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_criacao", type="datetime", nullable=false)
+     */
+    private $dataCriacao = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_modificacao", type="datetime", nullable=false)
+     */
+    private $dataModificacao = 'CURRENT_TIMESTAMP';
+
+
+}
+

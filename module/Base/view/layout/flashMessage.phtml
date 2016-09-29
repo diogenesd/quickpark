@@ -1,0 +1,12 @@
+<?php
+if ($this->flashMessenger()->hasSuccessMessages())
+    echo '<div class="alert alert-success feedback">' . $this->flashMessenger()->getSuccessMessages()[0] . '<button type="button" class="close" data-dismiss="alert">x</buttton></div>';
+
+if ($this->flashMessenger()->hasErrorMessages())
+    echo '<div class="alert alert-danger feedback">' . $this->flashMessenger()->getErrorMessages()[0] . '<button type="button" class="close" data-dismiss="alert">x</buttton></div>';
+
+if ($this->flashMessenger()->hasInfoMessages())
+    echo '<div class="alert alert-warnig feedback">' . $this->flashMessenger()->getInfoMessages()[0] . '<button type="button" class="close" data-dismiss="alert">x</buttton></div>';
+
+$this->flashMessenger()->clearMessages();
+?>

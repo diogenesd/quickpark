@@ -1,0 +1,92 @@
+<?php
+
+namespace Admin\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Configuracao
+ *
+ * @ORM\Table(name="configuracao", indexes={@ORM\Index(name="fk_configuracao_estabelecimento_idx", columns={"estabelecimento_id"})})
+ * @ORM\Entity
+ */
+class Configuracao
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="tolerancia_entrada", type="integer", nullable=false)
+     */
+    private $toleranciaEntrada;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="tolerancia_saida", type="integer", nullable=false)
+     */
+    private $toleranciaSaida;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="valor_hora", type="decimal", precision=10, scale=2, nullable=false)
+     */
+    private $valorHora;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="valor_diaria", type="decimal", precision=10, scale=2, nullable=true)
+     */
+    private $valorDiaria;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="valor_mensal", type="decimal", precision=10, scale=2, nullable=true)
+     */
+    private $valorMensal;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="active", type="integer", nullable=false, options={"unsigned"=true})
+     */
+    private $active = '1';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_on", type="datetime", nullable=false)
+     */
+    private $createdOn;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="modified_on", type="datetime", nullable=false)
+     */
+    private $modifiedOn = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \Admin\Entity\Estabelecimento
+     *
+     * @ORM\ManyToOne(targetEntity="Admin\Entity\Estabelecimento")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estabelecimento_id", referencedColumnName="id")
+     * })
+     */
+    private $estabelecimento;
+
+
+}
+
