@@ -9,20 +9,23 @@
 
         <!--Place favicon.ico and apple-touch-icon.png in the root directory--> 
         <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
-        
-        <?php $this->headLink()->prependStylesheet($this->basePath('/libs/fontawesome/css/font-awesome.min.css')); ?>
-        <?php $this->headLink()->prependStylesheet($this->basePath('/css/styles.css')); ?>
-        <?php $this->headLink()->prependStylesheet($this->basePath('/libs/bootstrap/dist/css/bootstrap.min.css')); ?>
-        <?php $this->headLink()->prependStylesheet($this->basePath('/libs/metisMenu/dist/metisMenu.css')); ?>
-        <?php $this->headLink()->prependStylesheet($this->basePath('/libs/animate.css/animate.css')); ?>
-        <?php $this->headLink()->prependStylesheet($this->basePath('/libs/toastr/build/toastr.min.css')); ?>
-        <?php $this->headLink()->prependStylesheet($this->basePath('/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css')); ?>
-        <?php $this->headLink()->prependStylesheet($this->basePath('/fonts/pe-icon-7-stroke/css/helper.css')); ?>
-        
+
+        <?php // $this->headLink()->appendStylesheet($this->basePath('/min?g=login-css')); ?>
+        <!-- Vendor styles -->
+        <?php $this->headLink()->appendStylesheet($this->basePath('/libs/fontawesome/css/font-awesome.min.css')); ?>
+        <?php $this->headLink()->appendStylesheet($this->basePath('/libs/metisMenu/dist/metisMenu.css')); ?>
+        <?php $this->headLink()->appendStylesheet($this->basePath('/libs/animate.css/animate.css')); ?>
+        <?php $this->headLink()->appendStylesheet($this->basePath('/libs/bootstrap/dist/css/bootstrap.min.css')); ?>
+        <?php $this->headLink()->appendStylesheet($this->basePath('/libs/toastr/build/toastr.min.css')); ?>
+        <!-- App styles -->
+        <?php $this->headLink()->appendStylesheet($this->basePath('/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css')); ?>
+        <?php $this->headLink()->appendStylesheet($this->basePath('/fonts/pe-icon-7-stroke/css/helper.css')); ?>
+        <?php $this->headLink()->appendStylesheet($this->basePath('/css/styles.css')); ?>
+        <?php $this->headLink()->appendStylesheet($this->basePath('/css/static_custom.css')); ?>
+
         <?php echo $this->headLink(); ?>
     </head>
     <body class="blank">
-
         <!-- Simple splash screen-->
         <div class="splash">
             <div class="color-line"></div>
@@ -45,44 +48,23 @@
 
         <div class="color-line"></div>
 
-        <div class="login-container">
-                <?php echo $this->partial('layout/flashMessage'); ?>
-                <?php echo $this->content; ?>
-            <button class="homerDemo1 btn btn-info btn-sm">Run example</button>
+            <?php echo $this->partial('layout/flashMessage'); ?>
+            <?php echo $this->content; ?>
+        
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <strong>QuickPark</strong> - Sistema web para pagamento de estacionamentos<br/>
+                © Copyright 2016 QuickPark Ltda.
+            </div>
         </div>
     </body>
-    <?php $this->headScript()->prependFile($this->basePath('/min?g=login-js')); ?>
-    <?php $this->headScript()->prependFile($this->basePath('/toastr/build/toastr.min.js')); ?>
+    <?php // $this->headScript()->appendFile($this->basePath('/min?g=login-js')); ?>
+    <?php $this->headScript()->appendFile($this->basePath('/libs/jquery/dist/jquery.min.js')); ?>
+    <?php $this->headScript()->appendFile($this->basePath('/libs/jquery-ui/jquery-ui.min.js')); ?>
+    <?php $this->headScript()->appendFile($this->basePath('/libs/slimScroll/jquery.slimscroll.min.js')); ?>
+    <?php $this->headScript()->appendFile($this->basePath('/libs/bootstrap/dist/js/bootstrap.min.js')); ?>
+    <?php $this->headScript()->appendFile($this->basePath('/libs/metisMenu/dist/metisMenu.min.js')); ?>
+    <?php $this->headScript()->appendFile($this->basePath('/js/homer.js')); ?>
+    <?php $this->headScript()->appendFile($this->basePath('/libs/toastr/build/toastr.min.js')); ?>
     <?php echo $this->headScript(); ?>
 </html>
-
-<script>
-
-    $(function () {
-        // Toastr options
-        toastr.options = {
-            "debug": false,
-            "newestOnTop": false,
-            "positionClass": "toast-top-center",
-            "closeButton": true,
-            "toastClass": "animated fadeInDown",
-        };
-
-        $('.homerDemo1').click(function (){
-            toastr.info('Info - This is a custom Homer info notification');
-        });
-
-        $('.homerDemo2').click(function (){
-            toastr.success('Success - This is a Homer success notification');
-        });
-
-        $('.homerDemo3').click(function (){
-            toastr.warning('Warning - This is a Homer warning notification');
-        });
-
-        $('.homerDemo4').click(function (){
-            toastr.error('Error - This is a Homer error notification');
-        });
-
-    });
-</script>

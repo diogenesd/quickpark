@@ -4,10 +4,10 @@ namespace Admin;
 return array(
     'router' => array(
         'routes' => array(
-            'adm' => array(
+            'admin' => array(
                 'type'    => 'Literal',
                 'options' => array(
-                    'route'    => '/adm',
+                    'route'    => '/admin',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Admin\Controller',
                         'controller'    => 'Index',
@@ -43,7 +43,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Admin\Controller\Index' => 'Admin\Controller\IndexController',
-            'Admin\Controller\Teste' => 'Admin\Controller\TesteController',
+            'Admin\Controller\Funcionario' => 'Admin\Controller\FuncionarioController',
+            'Admin\Controller\Configuracao' => 'Admin\Controller\ConfiguracaoController'
         ),
     ),
     'view_manager' => array(
@@ -55,7 +56,7 @@ return array(
         'template_map' => array(
             'layout/layout'           => __DIR__ . '/../view/layout/admin.phtml',
             'admin/index/index' =>    __DIR__ . '/../view/admin/index/index.phtml',
-            'admin/categoria/index' =>    __DIR__ . '/../view/admin/categoria/index.phtml',
+            'admin/funcionario/index' =>    __DIR__ . '/../view/admin/funcionario/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),

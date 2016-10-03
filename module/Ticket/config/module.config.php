@@ -53,9 +53,9 @@ return array(
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
         'template_map' => array(
-            'layout/layout'           => __DIR__ . '/../view/layout/admin.phtml',
-            'admin/index/index' =>    __DIR__ . '/../view/admin/index/index.phtml',
-            'admin/categoria/index' =>    __DIR__ . '/../view/admin/categoria/index.phtml',
+            'layout/layout'           => __DIR__ . '/../view/layout/ticket.phtml',
+            'ticket/index/index' =>    __DIR__ . '/../view/ticket/index/index.phtml',
+            'ticket/categoria/index' =>    __DIR__ . '/../view/ticket/categoria/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),
@@ -93,12 +93,12 @@ return array(
         'serveOptions' => array(
             'minApp' => array(
                 'groups' => array(
-                    'admin-css' => array(
+                    'ticket-css' => array(
                         getcwd() . '/public/libs/bootstrap/dist/css/bootstrap.min.css',
                         getcwd() . '/public/libs/fontawesome/css/font-awesome.min.css',
                         getcwd() . '/public/css/styles.css',
                     ),
-                    'admin-js' => array(
+                    'ticket-js' => array(
                         getcwd() . '/public/libs/jquery/dist/jquery.min.js',
                         getcwd() . '/public/libs/bootstrap/dist/js/bootstrap.min.js',
                         getcwd() . '/public/js/homer.js',

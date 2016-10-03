@@ -10,7 +10,7 @@ class IndexController extends AbstractController
     public function __construct() {
         $this->form = 'Ticket\Form\Ticket';
         $this->controller = 'Ticket';
-        $this->route = 'adm/default';
+        $this->route = 'ticket/default';
         $this->service = 'Ticket\Service\TicketService';
         $this->entity = 'Ticket\Entity\Ticket';
         

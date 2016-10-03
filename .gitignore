@@ -1,7 +1,3 @@
-/__arquivos/vps.txt
-.DS_Store
 /nbproject/private/*
-/perseus.iml
-/.idea/*
 *.DS_Store
 /liquibase/script.sql

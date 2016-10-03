@@ -1,12 +1,54 @@
 <?php
-if ($this->flashMessenger()->hasSuccessMessages())
-    echo '<div class="alert alert-success feedback">' . $this->flashMessenger()->getSuccessMessages()[0] . '<button type="button" class="close" data-dismiss="alert">x</buttton></div>';
 
-if ($this->flashMessenger()->hasErrorMessages())
-    echo '<div class="alert alert-danger feedback">' . $this->flashMessenger()->getErrorMessages()[0] . '<button type="button" class="close" data-dismiss="alert">x</buttton></div>';
+$this->inlineScript()->captureStart();
+echo <<<JS
+JS;
 
-if ($this->flashMessenger()->hasInfoMessages())
-    echo '<div class="alert alert-warnig feedback">' . $this->flashMessenger()->getInfoMessages()[0] . '<button type="button" class="close" data-dismiss="alert">x</buttton></div>';
+if ($this->flashMessenger()->hasErrorMessages()) {
+    echo <<<JS
+        toastr.error('
+JS;
+    echo addslashes($this->flashMessenger()->getErrorMessages()[0]);
+    echo <<< JS
+    ');
+JS;
+}
 
+if ($this->flashMessenger()->hasSuccessMessages()) {
+    echo <<<JS
+        toastr.success('
+JS;
+    echo addslashes($this->flashMessenger()->getSuccessMessages()[0]);
+    echo <<< JS
+    ');
+JS;
+}
+
+
+if ($this->flashMessenger()->hasWarningMessages()) {
+    echo <<<JS
+        toastr.warning('
+JS;
+    echo addslashes($this->flashMessenger()->getWarningMessages()[0]);
+    echo <<< JS
+    ');
+JS;
+}
+
+
+if ($this->flashMessenger()->hasInfoMessages()) {
+    echo <<<JS
+        toastr.info('
+JS;
+    echo addslashes($this->flashMessenger()->getInfoMessages()[0]);
+    echo <<< JS
+    ');
+JS;
+}
+
+echo <<<JS
+    });
+JS;
+
+$this->inlineScript()->captureEnd();
 $this->flashMessenger()->clearMessages();
-?>

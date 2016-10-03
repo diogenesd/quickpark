@@ -45,7 +45,7 @@ class IndexController extends AbstractController {
                 $authResult = $authService->authenticate();
                 if ($authResult->isValid()) {
                     $this->flashMessenger()->addSuccessMessage('Logado com successo');
-                    return $this->redirect()->toRoute('adm');
+                    return $this->redirect()->toRoute('admin');
                 } else {
                     $this->flashMessenger()->addErrorMessage('Credenciais inválidas');
                     $this->redirect()->toRoute($this->route);

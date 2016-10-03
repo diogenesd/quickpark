@@ -1,28 +1,157 @@
 <!DOCTYPE html>
-<html lang="pt_BR">
+<html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Área administrativa</title>
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        <?php $this->headLink()->prependStylesheet($this->basePath('/min?g=admin-css')); ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title><?php echo $this->translate('Login'); ?></title>
+
+        <!--Place favicon.ico and apple-touch-icon.png in the root directory--> 
+        <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+
+        <?php // $this->headLink()->appendStylesheet($this->basePath('/min?g=login-css')); ?>
+        <!-- Vendor styles -->
+        <?php $this->headLink()->appendStylesheet($this->basePath('/libs/fontawesome/css/font-awesome.min.css')); ?>
+        <?php $this->headLink()->appendStylesheet($this->basePath('/libs/metisMenu/dist/metisMenu.css')); ?>
+        <?php $this->headLink()->appendStylesheet($this->basePath('/libs/animate.css/animate.css')); ?>
+        <?php $this->headLink()->appendStylesheet($this->basePath('/libs/bootstrap/dist/css/bootstrap.min.css')); ?>
+        <?php $this->headLink()->appendStylesheet($this->basePath('/libs/toastr/build/toastr.min.css')); ?>
+        <!-- App styles -->
+        <?php $this->headLink()->appendStylesheet($this->basePath('/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css')); ?>
+        <?php $this->headLink()->appendStylesheet($this->basePath('/fonts/pe-icon-7-stroke/css/helper.css')); ?>
+        <?php $this->headLink()->appendStylesheet($this->basePath('/css/styles.css')); ?>
+        <?php $this->headLink()->appendStylesheet($this->basePath('/css/static_custom.css')); ?>
+
         <?php echo $this->headLink(); ?>
     </head>
-    <body>
-        <div class="app">
-            <!-- aside -->
-            <?php echo $this->partial('layout/flashMessage'); ?>
-            
-            <!-- content -->
-            <div id="content" class="app-content" role="main">
-                <?php echo $this->content; ?>
-                                
+    <body class="blank">
+        <!-- Simple splash screen-->
+        <div class="splash">
+            <div class="color-line"></div>
+            <div class="splash-title">
+                <h1>Carregando...</h1>
+                <p>Por favor, aguarde</p>
+                <div class="spinner">
+                    <div class="rect1"></div>
+                    <div class="rect2"></div>
+                    <div class="rect3"></div>
+                    <div class="rect4"></div>
+                    <div class="rect5"></div>
+                </div>
             </div>
-
-
         </div>
-        <script type="text/javascript">var baseUrl = '<?php echo $this->basePath(); ?>/';</script>
-        <?php $this->headScript()->prependFile($this->basePath('/min?g=login-js'));?>
-        <?php echo $this->headScript();?>
+        <!--[if lt IE 7]>
+        <p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Header -->
+        <div id="header">
+            <div class="color-line">
+            </div>
+            <div id="logo" class="light-version">
+                <span>
+                    QuickPark
+                </span>
+            </div>
+            <nav role="navigation">
+                <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+                <div class="small-logo">
+                    <span class="text-primary">QuickPark</span>
+                </div>
+                <div class="mobile-menu">
+                    <button type="button" class="navbar-toggle mobile-menu-toggle" data-toggle="collapse" data-target="#mobile-collapse">
+                        <i class="fa fa-chevron-down"></i>
+                    </button>
+                    <div class="collapse mobile-navbar" id="mobile-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">Editar perfil</a></li>
+                            <li><a href="#">Alterar senha</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav no-borders">
+                        <li>
+                            <a href="<?php echo $this->url('logout'); ?>">
+                                <i class="pe-7s-upload pe-rotate-90"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Navigation -->
+        <aside id="menu">
+            <div id="navigation">
+                <div class="profile-picture">
+                    <div class="stats-label text-color">
+                        <span class="font-extra-bold font-uppercase">
+                            <?php echo $this->userinfo->getNome(); ?>
+                        </span>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                                <small class="text-muted"><b class="caret"></b></small>
+                            </a>
+                            <ul class="dropdown-menu animated flipInX m-t-xs">
+                                <li><a href="#">Editar perfil</a></li>
+                                <li><a href="#">Alterar senha</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav" id="side-menu">
+                    <li class="active">
+                        <a href="<?php echo $this->url('admin'); ?>"><span class="nav-label">Início</span></a>
+                    </li>
+                    <li>
+                        <?php
+//                        var_dump($_SERVER['REQUEST_URI']);
+                        ?>
+                        <a href="<?php echo $this->url('admin/default', array('controller' => 'funcionario')); ?>"><span class="nav-label">Funcionários</span></a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $this->url('admin/default', array('controller' => 'configuracao')); ?>"> <span class="nav-label">Configurações</span></a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div id="wrapper">
+            <?php echo $this->partial('layout/flashMessage'); ?>
+            <?php echo $this->content; ?>
+
+            <!-- Footer-->
+            <footer class="footer">
+                <a href="#"><span class="pull-right text-muted">Contato</span></a>
+                © Copyright 2016 QuickPark Ltda. 
+            </footer>
+        </div>
+
     </body>
+    <?php // $this->headScript()->appendFile($this->basePath('/min?g=login-js')); ?>
+    <?php $this->headScript()->appendFile($this->basePath('/libs/jquery/dist/jquery.min.js')); ?>
+    <?php $this->headScript()->appendFile($this->basePath('/libs/jquery-ui/jquery-ui.min.js')); ?>
+    <?php $this->headScript()->appendFile($this->basePath('/libs/slimScroll/jquery.slimscroll.min.js')); ?>
+    <?php $this->headScript()->appendFile($this->basePath('/libs/bootstrap/dist/js/bootstrap.min.js')); ?>
+    <?php $this->headScript()->appendFile($this->basePath('/libs/metisMenu/dist/metisMenu.min.js')); ?>
+    <?php $this->headScript()->appendFile($this->basePath('/js/homer.js')); ?>
+    <?php $this->headScript()->appendFile($this->basePath('/libs/toastr/build/toastr.min.js')); ?>
+    <?php echo $this->headScript(); ?>
 </html>
+
+<script>
+    $(function () {
+        // Toastr options
+        toastr.options = {
+            "debug": false,
+            "newestOnTop": false,
+            "positionClass": "toast-top-center",
+            "closeButton": true,
+            "toastClass": "animated fadeInDown"
+        };
+
+    });
+</script>
