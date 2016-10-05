@@ -22,6 +22,7 @@
         <?php $this->headLink()->appendStylesheet($this->basePath('/fonts/pe-icon-7-stroke/css/helper.css')); ?>
         <?php $this->headLink()->appendStylesheet($this->basePath('/css/styles.css')); ?>
         <?php $this->headLink()->appendStylesheet($this->basePath('/css/static_custom.css')); ?>
+        <?php $this->headLink()->appendStylesheet($this->basePath('/css/custom.css')); ?>
 
         <?php echo $this->headLink(); ?>
     </head>
@@ -130,15 +131,15 @@
         </div>
         <script type="text/javascript">var baseUrl = '<?php echo $this->basePath(); ?>/';</script>
     </body>
-    <?php // $this->headScript()->appendFile($this->basePath('/min?g=login-js')); ?>
-    <?php $this->headScript()->appendFile($this->basePath('/libs/jquery/dist/jquery.min.js')); ?>
-    <?php $this->headScript()->appendFile($this->basePath('/libs/jquery-ui/jquery-ui.min.js')); ?>
-    <?php $this->headScript()->appendFile($this->basePath('/libs/slimScroll/jquery.slimscroll.min.js')); ?>
-    <?php $this->headScript()->appendFile($this->basePath('/libs/bootstrap/dist/js/bootstrap.min.js')); ?>
-    <?php $this->headScript()->appendFile($this->basePath('/libs/metisMenu/dist/metisMenu.min.js')); ?>
-    <?php $this->headScript()->appendFile($this->basePath('/js/homer.js')); ?>
-    <?php $this->headScript()->appendFile($this->basePath('/libs/toastr/build/toastr.min.js')); ?>
-    <?php $this->headScript()->appendFile($this->basePath('/js/scripts.js')); ?>
+    <?php $this->headScript()->prependFile($this->basePath('/min?g=admin-js')); ?>
+    <?php // $this->headScript()->prependFile($this->basePath('/libs/jquery/dist/jquery.min.js')); ?>
+    <?php // $this->headScript()->prependFile($this->basePath('/libs/jquery-ui/jquery-ui.min.js')); ?>
+    <?php // $this->headScript()->prependFile($this->basePath('/libs/slimScroll/jquery.slimscroll.min.js')); ?>
+    <?php // $this->headScript()->prependFile($this->basePath('/libs/bootstrap/dist/js/bootstrap.min.js')); ?>
+    <?php // $this->headScript()->prependFile($this->basePath('/libs/metisMenu/dist/metisMenu.min.js')); ?>
+    <?php // $this->headScript()->prependFile($this->basePath('/js/homer.js')); ?>
+    <?php // $this->headScript()->prependFile($this->basePath('/libs/toastr/build/toastr.min.js')); ?>
+    <?php // $this->headScript()->prependFile($this->basePath('/js/scripts.js')); ?>
     <?php echo $this->headScript(); ?>
     <?php echo $this->inlineScript(); ?>
 </html>

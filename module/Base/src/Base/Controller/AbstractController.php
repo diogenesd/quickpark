@@ -283,21 +283,21 @@ abstract class AbstractController extends AbstractActionController {
      */
     public function activesetAction() {
         $id = $this->params()->fromRoute('id', 0);
-        $ativo = $this->params()->fromRoute('ativo');
+        $active = $this->params()->fromRoute('active');
 
         $em = $this->getEm();
-//        $em->getFilters()->disable('softdeleteable'); // this was the problem when you use the soft delete extension you need to disable the filter if you want to reactivate deleted records
         $qb = $em->createQueryBuilder();
         $qb->update($this->entity, 'e');
-        $qb->set('e.ativo', ':ativo');
-        $qb->setParameter('ativo', $ativo);
+        $qb->set('e.active', ':active');
+        $qb->setParameter('active', $active);
         $qb->where("e.id = :id");
         $qb->setParameter('id', $id);
 
-        if ($ativo)
+        if ($active) {
             $acao = 'ativado';
-        else
+        } else {
             $acao = 'desativado';
+        }
 
         if ($qb->getQuery()->execute()) {
             $this->flashMessenger()->addSuccessMessage('Registro ' . $acao . ' com sucesso!');

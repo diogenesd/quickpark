@@ -20,12 +20,12 @@ return array(
                     'default' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/[:controller[/:action[/:id[/:ativo]]]]',
+                            'route' => '/[:controller[/:action[/:id[/:active]]]]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'id' => '\d+',
-                                'ativo' => '\d+',
+                                'active' => '\d+',
                             ),
                             'defaults' => array(
                             ),
@@ -87,4 +87,22 @@ return array(
             ),
         ),
     ),
+    'TpMinify' => array(
+        'serveOptions' => array(
+            'minApp' => array(
+                'groups' => array(
+                    'admin-js' => array(
+                        getcwd() . '/public/libs/jquery/dist/jquery.min.js',
+                        getcwd() . '/public/libs/jquery-ui/jquery-ui.min.js',
+                        getcwd() . '/public/libs/slimScroll/jquery.slimscroll.min.js',
+                        getcwd() . '/public/libs/bootstrap/dist/js/bootstrap.min.js',
+                        getcwd() . '/public/libs/metisMenu/dist/metisMenu.min.js',
+                        getcwd() . '/public/js/homer.js',
+                        getcwd() . '/public//libs/toastr/build/toastr.min.js',
+                        getcwd() . '/public/js/scripts.js'
+                    )
+                )
+            )
+        ),
+    )
 );

@@ -1,7 +1,0 @@
-#SetEnv ZF2_PATH /var/www/valealternativo.com.br/vendor/zendframework/zendframework/
-#Options +FollowSymLinks -MultiViews
-#RewriteEngine On
-##RewriteBase /
-#
-#RewriteCond %{REQUEST_URI} !/public [NC]
-#RewriteRule ^(.*)$ public/$1 [L]

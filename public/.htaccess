@@ -1,4 +1,3 @@
-#SetEnv ZF2_PATH /var/www/valealternativo.com.br/vendor/zendframework/zendframework/
 DirectoryIndex index.html index.cgi index.php
 RewriteEngine On
 # The following rule tells Apache that if the requested filename

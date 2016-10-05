@@ -9,6 +9,34 @@ return array(
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
             // using the path /login/:controller/:action
+            'login' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/login',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Login\Controller',
+                        'controller' => 'Index',
+                        'action' => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:controller[/:action[/:id[/:active]]]]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '\d+',
+                                'active' => '\d+',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    )
+                ),
+            ),
             'home' => array(
                 'type' => 'Literal',
                 'options' => array(
@@ -110,16 +138,6 @@ return array(
         'serveOptions' => array(
             'minApp' => array(
                 'groups' => array(
-                    'login-css' => array(
-                        getcwd() . '/public/css/styles.css',
-                        getcwd() . '/public/libs/bootstrap/dist/css/bootstrap.min.css',
-                        getcwd() . '/public/libs/metisMenu/dist/metisMenu.css',
-                        getcwd() . '/public/libs/animate.css/animate.css',
-                        getcwd() . '/public/libs/toastr/build/toastr.min.css',
-                        getcwd() . '/public/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css',
-                        getcwd() . '/public/fonts/pe-icon-7-stroke/css/helper.css'
-                        
-                    ),
                     'login-js' => array(
                         getcwd() . '/public/libs/jquery/dist/jquery.min.js',
                         getcwd() . '/public/libs/jquery-ui/jquery-ui.min.js',
