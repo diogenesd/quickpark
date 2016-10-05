@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManager;
 /**
  * Description of CategoriaService
  *
- * @author mauricioschmitz
+ * @author rodrigoheinzle
  */
 class LoginService extends AbstractService{
     public function __construct(EntityManager $em) {

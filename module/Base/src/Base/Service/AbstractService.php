@@ -11,7 +11,7 @@ namespace Base\Service;
 /**
  * Description of AbstractEntity
  *
- * @author mauricioschmitz
+ * @author rodrigoheinzle
  */
 use Doctrine\ORM\EntityManager;
 use Zend\Stdlib\Hydrator\ClassMethods;

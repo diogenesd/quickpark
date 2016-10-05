@@ -6,7 +6,7 @@ use Zend\InputFilter\InputFilter;
 /**
  * Description of AbstractFilter
  *
- * @author mauricioschmitz
+ * @author rodrigoheinzle
  */
 abstract class AbstractFilter extends InputFilter {
     

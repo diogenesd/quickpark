@@ -5,7 +5,7 @@ namespace Base\Controller;
 /**
  * Description of FilesAbstractController
  *
- * @author mauricioschmitz
+ * @author rodrigoheinzle
  */
 
 use Zend\View\Model\JsonModel;

@@ -23,10 +23,10 @@ $form->prepare();
                     <div class="form-group">
                         <?php echo $this->formLabel($form->get('password')); ?>
                         <?php echo $this->formInput($form->get('password')); ?>
-                        <a class="help-block small" href="#">Esqueci minha senha</a>
+                        <a class="help-block small" href="<?php  echo $this->url('recuperarsenha'); ?>">Esqueci minha senha</a>
                     </div>
                     <?php echo $this->formSubmit($form->get('entrar')); ?>
-                    <a class="btn btn-default btn-block" href="#">Cadastre-se</a>
+                    <a class="btn btn-default btn-block" href="<?php  echo $this->url('cadastro'); ?>">Cadastre-se</a>
                     <?php echo $this->form()->closeTag(); ?>
                 </div>
             </div>

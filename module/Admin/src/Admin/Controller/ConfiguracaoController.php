@@ -9,7 +9,7 @@ class ConfiguracaoController extends AbstractController
 {
     public function __construct() {
         $this->form = 'Admin\Form\Configuracao';
-        $this->controller = 'Admin';
+        $this->controller = 'Configuracao';
         $this->route = 'admin/default';
         $this->service = 'Admin\Service\ConfiguracaoService';
         $this->entity = 'Admin\Entity\Configuracao';

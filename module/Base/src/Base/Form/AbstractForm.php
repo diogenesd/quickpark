@@ -7,7 +7,7 @@ use Zend\Form\Element;
 /**
  * Description of AbstractForm
  *
- * @author mauricioschmitz
+ * @author rodrigoheinzle
  */
 abstract class AbstractForm extends Form {
 

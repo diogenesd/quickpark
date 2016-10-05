@@ -11,7 +11,7 @@ namespace Base\Entity;
 /**
  * Description of AbstractEntity
  *
- * @author mauricioschmitz
+ * @author rodrigoheinzle
  */
 
 use Zend\Stdlib\Hydrator\ClassMethods;
