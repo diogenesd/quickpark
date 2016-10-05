@@ -37,7 +37,7 @@ class FuncionarioForm extends AbstractForm {
             'options' => array(
                 'label' => 'Nome',
                 'label_attributes' => array(
-                    'class' => 'col-sm-2 control-label'
+                    'class' => 'col-md-1 col-sm-2 control-label'
                 ),
             )
         ));
@@ -55,7 +55,7 @@ class FuncionarioForm extends AbstractForm {
             'options' => array(
                 'label' => 'CPF',
                 'label_attributes' => array(
-                    'class' => 'col-sm-2 control-label'
+                    'class' => 'col-md-1 col-sm-2 control-label'
                 ),
             )
         ));
@@ -73,7 +73,7 @@ class FuncionarioForm extends AbstractForm {
             'options' => array(
                 'label' => 'E-mail',
                 'label_attributes' => array(
-                    'class' => 'col-sm-2 control-label'
+                    'class' => 'col-md-1 col-sm-2 control-label'
                 ),
             )
         ));
@@ -91,7 +91,7 @@ class FuncionarioForm extends AbstractForm {
             'options' => array(
                 'label' => 'Senha',
                 'label_attributes' => array(
-                    'class' => 'col-sm-2 control-label'
+                    'class' => 'col-md-1 col-sm-2 control-label'
                 ),
             )
         ));

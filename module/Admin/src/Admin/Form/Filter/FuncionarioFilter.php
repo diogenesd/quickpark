@@ -1,10 +1,10 @@
 <?php
 
-namespace Login\Form\Filter;
+namespace Admin\Form\Filter;
 
 use Zend\InputFilter\InputFilter;
 
-class LoginFilter extends InputFilter {
+class FuncionarioFilter extends InputFilter {
 
     public function __construct() {
         $isEmpty = \Zend\Validator\NotEmpty::IS_EMPTY;
