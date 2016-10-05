@@ -87,15 +87,4 @@ return array(
             ),
         ),
     ),
-    'TpMinify' => array(
-        'serveOptions' => array(
-            'minApp' => array(
-                'groups' => array(
-                    'datatables-js' => array(
-                        getcwd() . '/public/libs/datatables/media/js/dataTables.bootstrap.js',
-                    )
-                )
-            )
-        ),
-    ),
 );
