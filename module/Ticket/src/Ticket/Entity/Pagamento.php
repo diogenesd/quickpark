@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="pagamento", indexes={@ORM\Index(name="fk_pagamento_forma_pagamento_idx", columns={"forma_pagamento_id"}), @ORM\Index(name="fk_pagamento_funcionario_idx", columns={"funcionario_id"}), @ORM\Index(name="fk_pagamento_cliente_idx", columns={"cliente_id"}), @ORM\Index(name="fk_pagamento_bilhete_idx", columns={"bilhete_id"})})
  * @ORM\Entity(repositoryClass="Base\Entity\GlobalRepository")
  */
-class Pagamento
-{
+class Pagamento extends \Base\Entity\AbstractEntity {
+
     /**
      * @var int
      *
@@ -34,20 +34,6 @@ class Pagamento
      * @ORM\Column(name="active", type="integer", nullable=false, options={"unsigned"=true})
      */
     private $active = '1';
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_on", type="datetime", nullable=false)
-     */
-    private $createdOn = 'CURRENT_TIMESTAMP';
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="modified_on", type="datetime", nullable=false)
-     */
-    private $modifiedOn = 'CURRENT_TIMESTAMP';
 
     /**
      * @var \Ticket\Entity\Bilhete
@@ -89,15 +75,12 @@ class Pagamento
      */
     private $funcionario;
 
-
-
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -108,8 +91,7 @@ class Pagamento
      *
      * @return Pagamento
      */
-    public function setValor($valor)
-    {
+    public function setValor($valor) {
         $this->valor = $valor;
 
         return $this;
@@ -120,8 +102,7 @@ class Pagamento
      *
      * @return string
      */
-    public function getValor()
-    {
+    public function getValor() {
         return $this->valor;
     }
 
@@ -132,8 +113,7 @@ class Pagamento
      *
      * @return Pagamento
      */
-    public function setActive($active)
-    {
+    public function setActive($active) {
         $this->active = $active;
 
         return $this;
@@ -144,57 +124,8 @@ class Pagamento
      *
      * @return int
      */
-    public function getActive()
-    {
+    public function getActive() {
         return $this->active;
-    }
-
-    /**
-     * Set createdOn
-     *
-     * @param \DateTime $createdOn
-     *
-     * @return Pagamento
-     */
-    public function setCreatedOn($createdOn)
-    {
-        $this->createdOn = $createdOn;
-
-        return $this;
-    }
-
-    /**
-     * Get createdOn
-     *
-     * @return \DateTime
-     */
-    public function getCreatedOn()
-    {
-        return $this->createdOn;
-    }
-
-    /**
-     * Set modifiedOn
-     *
-     * @param \DateTime $modifiedOn
-     *
-     * @return Pagamento
-     */
-    public function setModifiedOn($modifiedOn)
-    {
-        $this->modifiedOn = $modifiedOn;
-
-        return $this;
-    }
-
-    /**
-     * Get modifiedOn
-     *
-     * @return \DateTime
-     */
-    public function getModifiedOn()
-    {
-        return $this->modifiedOn;
     }
 
     /**
@@ -204,8 +135,7 @@ class Pagamento
      *
      * @return Pagamento
      */
-    public function setBilhete(\Ticket\Entity\Bilhete $bilhete = null)
-    {
+    public function setBilhete(\Ticket\Entity\Bilhete $bilhete = null) {
         $this->bilhete = $bilhete;
 
         return $this;
@@ -216,8 +146,7 @@ class Pagamento
      *
      * @return \Ticket\Entity\Bilhete
      */
-    public function getBilhete()
-    {
+    public function getBilhete() {
         return $this->bilhete;
     }
 
@@ -228,8 +157,7 @@ class Pagamento
      *
      * @return Pagamento
      */
-    public function setCliente(\Ticket\Entity\Cliente $cliente = null)
-    {
+    public function setCliente(\Ticket\Entity\Cliente $cliente = null) {
         $this->cliente = $cliente;
 
         return $this;
@@ -240,8 +168,7 @@ class Pagamento
      *
      * @return \Ticket\Entity\Cliente
      */
-    public function getCliente()
-    {
+    public function getCliente() {
         return $this->cliente;
     }
 
@@ -252,8 +179,7 @@ class Pagamento
      *
      * @return Pagamento
      */
-    public function setFormaPagamento(\Ticket\Entity\FormaPagamento $formaPagamento = null)
-    {
+    public function setFormaPagamento(\Ticket\Entity\FormaPagamento $formaPagamento = null) {
         $this->formaPagamento = $formaPagamento;
 
         return $this;
@@ -264,8 +190,7 @@ class Pagamento
      *
      * @return \Ticket\Entity\FormaPagamento
      */
-    public function getFormaPagamento()
-    {
+    public function getFormaPagamento() {
         return $this->formaPagamento;
     }
 
@@ -276,8 +201,7 @@ class Pagamento
      *
      * @return Pagamento
      */
-    public function setFuncionario(\Ticket\Entity\Funcionario $funcionario = null)
-    {
+    public function setFuncionario(\Ticket\Entity\Funcionario $funcionario = null) {
         $this->funcionario = $funcionario;
 
         return $this;
@@ -288,8 +212,8 @@ class Pagamento
      *
      * @return \Ticket\Entity\Funcionario
      */
-    public function getFuncionario()
-    {
+    public function getFuncionario() {
         return $this->funcionario;
     }
+
 }

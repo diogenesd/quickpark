@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="configuracao")
  * @ORM\Entity(repositoryClass="Base\Entity\GlobalRepository")
  */
-class Configuracao {
+class Configuracao extends \Base\Entity\AbstractEntity {
 
     /**
      * @var int
@@ -62,20 +62,6 @@ class Configuracao {
      * @ORM\Column(name="active", type="integer", nullable=false, options={"unsigned"=true})
      */
     private $active = '1';
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_on", type="datetime", nullable=false)
-     */
-    private $createdOn;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="modified_on", type="datetime", nullable=false)
-     */
-    private $modifiedOn = 'CURRENT_TIMESTAMP';
 
     /**
      * Get id
@@ -218,47 +204,4 @@ class Configuracao {
         return $this->active;
     }
 
-    /**
-     * Set createdOn
-     *
-     * @param \DateTime $createdOn
-     *
-     * @return Configuracao
-     */
-    public function setCreatedOn($createdOn) {
-        $this->createdOn = $createdOn;
-
-        return $this;
-    }
-
-    /**
-     * Get createdOn
-     *
-     * @return \DateTime
-     */
-    public function getCreatedOn() {
-        return $this->createdOn;
-    }
-
-    /**
-     * Set modifiedOn
-     *
-     * @param \DateTime $modifiedOn
-     *
-     * @return Configuracao
-     */
-    public function setModifiedOn($modifiedOn) {
-        $this->modifiedOn = $modifiedOn;
-
-        return $this;
-    }
-
-    /**
-     * Get modifiedOn
-     *
-     * @return \DateTime
-     */
-    public function getModifiedOn() {
-        return $this->modifiedOn;
-    }
 }

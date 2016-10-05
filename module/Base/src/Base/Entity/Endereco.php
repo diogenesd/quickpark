@@ -75,14 +75,14 @@ class Endereco
      *
      * @ORM\Column(name="created_on", type="datetime", nullable=false)
      */
-    private $createdOn = 'CURRENT_TIMESTAMP';
+    private $createdOn;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="modified_on", type="datetime", nullable=false)
      */
-    private $modifiedOn = 'CURRENT_TIMESTAMP';
+    private $modifiedOn;
 
 
 

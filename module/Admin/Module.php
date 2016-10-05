@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -13,35 +14,29 @@ use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Service\ViewHelperManagerFactory;
 use Zend\Authentication\AuthenticationService;
+use Admin\Service\FuncionarioService;
 
-class Module
-{
-    public function onBootstrap(MvcEvent $e)
-    {
+class Module {
+
+    public function onBootstrap(MvcEvent $e) {
         $eventManager = $e->getApplication()->getEventManager();
-        
-        $eventManager->attach (
-            MvcEvent::EVENT_ROUTE,
-            function  (MvcEvent $e)
-            {
-                $serviceManager = $e->getApplication()->getServiceManager();
-                $authenticationService = $serviceManager->get('Zend\Authentication\AuthenticationService');
-                $loggedUser = $authenticationService->getIdentity();
-                // update 
-                $layout = $e->getViewModel();
-                $layout->userinfo = $loggedUser;
-       });
-       
-       
+
+        $eventManager->attach(
+                MvcEvent::EVENT_ROUTE, function (MvcEvent $e) {
+            $serviceManager = $e->getApplication()->getServiceManager();
+            $authenticationService = $serviceManager->get('Zend\Authentication\AuthenticationService');
+            $loggedUser = $authenticationService->getIdentity();
+            // update 
+            $layout = $e->getViewModel();
+            $layout->userinfo = $loggedUser;
+        });
     }
 
-    public function getConfig()
-    {
+    public function getConfig() {
         return include __DIR__ . '/config/module.config.php';
     }
 
-    public function getAutoloaderConfig()
-    {
+    public function getAutoloaderConfig() {
         return array(
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
@@ -50,12 +45,14 @@ class Module
             ),
         );
     }
-    
-    public function getServiceConfig(){
-        
+
+    public function getServiceConfig() {
         return array(
-            
-        );
+            'factories' => array(
+                'Admin\Service\FuncionarioService' => function($em) {
+                    return new FuncionarioService($em->get('Doctrine\ORM\EntityManager'));
+                }
+        ));
     }
-    
+
 }

@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user_role", indexes={@ORM\Index(name="fk_user_role_user_idx", columns={"user_id"}), @ORM\Index(name="fk_user_role_role_idx", columns={"role_id"})})
  * @ORM\Entity(repositoryClass="Base\Entity\GlobalRepository")
  */
-class UserRole
-{
+class UserRole extends \Base\Entity\AbstractEntity {
+
     /**
      * @var int
      *
@@ -27,29 +27,6 @@ class UserRole
      * @ORM\Column(name="active", type="integer", nullable=false, options={"unsigned"=true})
      */
     private $active = '1';
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_on", type="datetime", nullable=false)
-     */
-    private $createdOn = 'CURRENT_TIMESTAMP';
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="modified_on", type="datetime", nullable=false)
-     */
-    private $modifiedOn = 'CURRENT_TIMESTAMP';
-
-    /**
-     * @var \Login\Entity\Role
-     *
-     * @ORM\ManyToOne(targetEntity="Login\Entity\Role")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="role_id", referencedColumnName="id")
-     * })
-     */
     private $role;
 
     /**
@@ -62,15 +39,12 @@ class UserRole
      */
     private $user;
 
-
-
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -81,8 +55,7 @@ class UserRole
      *
      * @return UserRole
      */
-    public function setActive($active)
-    {
+    public function setActive($active) {
         $this->active = $active;
 
         return $this;
@@ -93,57 +66,8 @@ class UserRole
      *
      * @return int
      */
-    public function getActive()
-    {
+    public function getActive() {
         return $this->active;
-    }
-
-    /**
-     * Set createdOn
-     *
-     * @param \DateTime $createdOn
-     *
-     * @return UserRole
-     */
-    public function setCreatedOn($createdOn)
-    {
-        $this->createdOn = $createdOn;
-
-        return $this;
-    }
-
-    /**
-     * Get createdOn
-     *
-     * @return \DateTime
-     */
-    public function getCreatedOn()
-    {
-        return $this->createdOn;
-    }
-
-    /**
-     * Set modifiedOn
-     *
-     * @param \DateTime $modifiedOn
-     *
-     * @return UserRole
-     */
-    public function setModifiedOn($modifiedOn)
-    {
-        $this->modifiedOn = $modifiedOn;
-
-        return $this;
-    }
-
-    /**
-     * Get modifiedOn
-     *
-     * @return \DateTime
-     */
-    public function getModifiedOn()
-    {
-        return $this->modifiedOn;
     }
 
     /**
@@ -153,8 +77,7 @@ class UserRole
      *
      * @return UserRole
      */
-    public function setRole(\Login\Entity\Role $role = null)
-    {
+    public function setRole(\Login\Entity\Role $role = null) {
         $this->role = $role;
 
         return $this;
@@ -165,8 +88,7 @@ class UserRole
      *
      * @return \Login\Entity\Role
      */
-    public function getRole()
-    {
+    public function getRole() {
         return $this->role;
     }
 
@@ -177,8 +99,7 @@ class UserRole
      *
      * @return UserRole
      */
-    public function setUser(\Login\Entity\User $user = null)
-    {
+    public function setUser(\Login\Entity\User $user = null) {
         $this->user = $user;
 
         return $this;
@@ -189,8 +110,8 @@ class UserRole
      *
      * @return \Login\Entity\User
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->user;
     }
+
 }

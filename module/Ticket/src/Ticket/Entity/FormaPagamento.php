@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="forma_pagamento", uniqueConstraints={@ORM\UniqueConstraint(name="descricao_UNIQUE", columns={"descricao"})})
  * @ORM\Entity(repositoryClass="Base\Entity\GlobalRepository")
  */
-class FormaPagamento
-{
+class FormaPagamento extends \Base\Entity\AbstractEntity {
+
     /**
      * @var int
      *
@@ -36,28 +36,11 @@ class FormaPagamento
     private $active = '1';
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_on", type="datetime", nullable=false)
-     */
-    private $createdOn = 'CURRENT_TIMESTAMP';
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="modified_on", type="datetime", nullable=false)
-     */
-    private $modifiedOn = 'CURRENT_TIMESTAMP';
-
-
-
-    /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -68,8 +51,7 @@ class FormaPagamento
      *
      * @return FormaPagamento
      */
-    public function setDescricao($descricao)
-    {
+    public function setDescricao($descricao) {
         $this->descricao = $descricao;
 
         return $this;
@@ -80,8 +62,7 @@ class FormaPagamento
      *
      * @return string
      */
-    public function getDescricao()
-    {
+    public function getDescricao() {
         return $this->descricao;
     }
 
@@ -92,8 +73,7 @@ class FormaPagamento
      *
      * @return FormaPagamento
      */
-    public function setActive($active)
-    {
+    public function setActive($active) {
         $this->active = $active;
 
         return $this;
@@ -104,56 +84,8 @@ class FormaPagamento
      *
      * @return int
      */
-    public function getActive()
-    {
+    public function getActive() {
         return $this->active;
     }
 
-    /**
-     * Set createdOn
-     *
-     * @param \DateTime $createdOn
-     *
-     * @return FormaPagamento
-     */
-    public function setCreatedOn($createdOn)
-    {
-        $this->createdOn = $createdOn;
-
-        return $this;
-    }
-
-    /**
-     * Get createdOn
-     *
-     * @return \DateTime
-     */
-    public function getCreatedOn()
-    {
-        return $this->createdOn;
-    }
-
-    /**
-     * Set modifiedOn
-     *
-     * @param \DateTime $modifiedOn
-     *
-     * @return FormaPagamento
-     */
-    public function setModifiedOn($modifiedOn)
-    {
-        $this->modifiedOn = $modifiedOn;
-
-        return $this;
-    }
-
-    /**
-     * Get modifiedOn
-     *
-     * @return \DateTime
-     */
-    public function getModifiedOn()
-    {
-        return $this->modifiedOn;
-    }
 }

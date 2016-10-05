@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="funcionario")
  * @ORM\Entity(repositoryClass="Base\Entity\GlobalRepository")
  */
-class Funcionario
-{
+class Funcionario extends \Base\Entity\AbstractEntity {
+
     /**
      * @var int
      *
@@ -22,36 +22,32 @@ class Funcionario
     private $id;
 
     /**
-     * @var \Admin\Entity\User
+     * @var \Login\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="Admin\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Login\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
      */
     private $user;
 
-
-
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
     /**
      * Set user
      *
-     * @param \Admin\Entity\User $user
+     * @param \Login\Entity\User $user
      *
      * @return Funcionario
      */
-    public function setUser(\Admin\Entity\User $user = null)
-    {
+    public function setUser(\Login\Entity\User $user = null) {
         $this->user = $user;
 
         return $this;
@@ -60,10 +56,10 @@ class Funcionario
     /**
      * Get user
      *
-     * @return \Admin\Entity\User
+     * @return \Login\Entity\User
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->user;
     }
+
 }

@@ -9,13 +9,18 @@
                     <p>
                         Você receberá uma nova senha por e-mail.
                     </p>
-                        <form action="#" id="loginForm">
-                            <div class="form-group">
+                    <form action="#" id="loginForm">
+                        <div class="row">
+                            <div class="form-group col-md-12">
                                 <label class="control-label" for="username">E-mail</label>
                                 <input type="text" title="Please enter you email adress" required="" value="" name="username" id="username" class="form-control">
                             </div>
-                            <button class="btn btn-success btn-block">Recuperar</button>
-                        </form>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-success">Recuperar</button>
+                            <a class="btn btn-default" href="<?php echo $this->url('home'); ?>">Cancelar</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

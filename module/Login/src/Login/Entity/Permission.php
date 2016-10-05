@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="permission", indexes={@ORM\Index(name="fk_permission_resource_idx", columns={"resource_id"})})
  * @ORM\Entity(repositoryClass="Base\Entity\GlobalRepository")
  */
-class Permission
-{
+class Permission extends \Base\Entity\AbstractEntity {
+
     /**
      * @var int
      *
@@ -36,20 +36,6 @@ class Permission
     private $active = '1';
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_on", type="datetime", nullable=false)
-     */
-    private $createdOn = 'CURRENT_TIMESTAMP';
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="modified_on", type="datetime", nullable=false)
-     */
-    private $modifiedOn = 'CURRENT_TIMESTAMP';
-
-    /**
      * @var \Login\Entity\Resource
      *
      * @ORM\ManyToOne(targetEntity="Login\Entity\Resource")
@@ -59,15 +45,12 @@ class Permission
      */
     private $resource;
 
-
-
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -78,8 +61,7 @@ class Permission
      *
      * @return Permission
      */
-    public function setPermissionName($permissionName)
-    {
+    public function setPermissionName($permissionName) {
         $this->permissionName = $permissionName;
 
         return $this;
@@ -90,8 +72,7 @@ class Permission
      *
      * @return string
      */
-    public function getPermissionName()
-    {
+    public function getPermissionName() {
         return $this->permissionName;
     }
 
@@ -102,8 +83,7 @@ class Permission
      *
      * @return Permission
      */
-    public function setActive($active)
-    {
+    public function setActive($active) {
         $this->active = $active;
 
         return $this;
@@ -114,57 +94,8 @@ class Permission
      *
      * @return int
      */
-    public function getActive()
-    {
+    public function getActive() {
         return $this->active;
-    }
-
-    /**
-     * Set createdOn
-     *
-     * @param \DateTime $createdOn
-     *
-     * @return Permission
-     */
-    public function setCreatedOn($createdOn)
-    {
-        $this->createdOn = $createdOn;
-
-        return $this;
-    }
-
-    /**
-     * Get createdOn
-     *
-     * @return \DateTime
-     */
-    public function getCreatedOn()
-    {
-        return $this->createdOn;
-    }
-
-    /**
-     * Set modifiedOn
-     *
-     * @param \DateTime $modifiedOn
-     *
-     * @return Permission
-     */
-    public function setModifiedOn($modifiedOn)
-    {
-        $this->modifiedOn = $modifiedOn;
-
-        return $this;
-    }
-
-    /**
-     * Get modifiedOn
-     *
-     * @return \DateTime
-     */
-    public function getModifiedOn()
-    {
-        return $this->modifiedOn;
     }
 
     /**
@@ -174,8 +105,7 @@ class Permission
      *
      * @return Permission
      */
-    public function setResource(\Login\Entity\Resource $resource = null)
-    {
+    public function setResource(\Login\Entity\Resource $resource = null) {
         $this->resource = $resource;
 
         return $this;
@@ -186,8 +116,8 @@ class Permission
      *
      * @return \Login\Entity\Resource
      */
-    public function getResource()
-    {
+    public function getResource() {
         return $this->resource;
     }
+
 }

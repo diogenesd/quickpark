@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="role")
  * @ORM\Entity(repositoryClass="Base\Entity\GlobalRepository")
  */
-class Role
-{
+class Role extends \Base\Entity\AbstractEntity {
+
     /**
      * @var int
      *
@@ -36,28 +36,11 @@ class Role
     private $active = '1';
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_on", type="datetime", nullable=false)
-     */
-    private $createdOn = 'CURRENT_TIMESTAMP';
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="modified_on", type="datetime", nullable=false)
-     */
-    private $modifiedOn = 'CURRENT_TIMESTAMP';
-
-
-
-    /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -68,8 +51,7 @@ class Role
      *
      * @return Role
      */
-    public function setRoleName($roleName)
-    {
+    public function setRoleName($roleName) {
         $this->roleName = $roleName;
 
         return $this;
@@ -80,8 +62,7 @@ class Role
      *
      * @return string
      */
-    public function getRoleName()
-    {
+    public function getRoleName() {
         return $this->roleName;
     }
 
@@ -92,8 +73,7 @@ class Role
      *
      * @return Role
      */
-    public function setActive($active)
-    {
+    public function setActive($active) {
         $this->active = $active;
 
         return $this;
@@ -104,56 +84,8 @@ class Role
      *
      * @return int
      */
-    public function getActive()
-    {
+    public function getActive() {
         return $this->active;
     }
 
-    /**
-     * Set createdOn
-     *
-     * @param \DateTime $createdOn
-     *
-     * @return Role
-     */
-    public function setCreatedOn($createdOn)
-    {
-        $this->createdOn = $createdOn;
-
-        return $this;
-    }
-
-    /**
-     * Get createdOn
-     *
-     * @return \DateTime
-     */
-    public function getCreatedOn()
-    {
-        return $this->createdOn;
-    }
-
-    /**
-     * Set modifiedOn
-     *
-     * @param \DateTime $modifiedOn
-     *
-     * @return Role
-     */
-    public function setModifiedOn($modifiedOn)
-    {
-        $this->modifiedOn = $modifiedOn;
-
-        return $this;
-    }
-
-    /**
-     * Get modifiedOn
-     *
-     * @return \DateTime
-     */
-    public function getModifiedOn()
-    {
-        return $this->modifiedOn;
-    }
 }

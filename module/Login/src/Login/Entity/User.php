@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"}), @ORM\UniqueConstraint(name="cpf_UNIQUE", columns={"cpf"})})
  * @ORM\Entity(repositoryClass="Base\Entity\GlobalRepository")
  */
-class User
-{
+class User extends \Base\Entity\AbstractEntity {
+
     /**
      * @var int
      *
@@ -57,28 +57,11 @@ class User
     private $active = '1';
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_on", type="datetime", nullable=false)
-     */
-    private $createdOn = 'CURRENT_TIMESTAMP';
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="modified_on", type="datetime", nullable=false)
-     */
-    private $modifiedOn = 'CURRENT_TIMESTAMP';
-
-
-
-    /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -89,8 +72,7 @@ class User
      *
      * @return User
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
 
         return $this;
@@ -101,8 +83,7 @@ class User
      *
      * @return string
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
@@ -113,8 +94,7 @@ class User
      *
      * @return User
      */
-    public function setPassword($password)
-    {
+    public function setPassword($password) {
         $this->password = $password;
 
         return $this;
@@ -125,8 +105,7 @@ class User
      *
      * @return string
      */
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
 
@@ -137,8 +116,7 @@ class User
      *
      * @return User
      */
-    public function setNome($nome)
-    {
+    public function setNome($nome) {
         $this->nome = $nome;
 
         return $this;
@@ -149,8 +127,7 @@ class User
      *
      * @return string
      */
-    public function getNome()
-    {
+    public function getNome() {
         return $this->nome;
     }
 
@@ -161,8 +138,7 @@ class User
      *
      * @return User
      */
-    public function setCpf($cpf)
-    {
+    public function setCpf($cpf) {
         $this->cpf = $cpf;
 
         return $this;
@@ -173,8 +149,7 @@ class User
      *
      * @return string
      */
-    public function getCpf()
-    {
+    public function getCpf() {
         return $this->cpf;
     }
 
@@ -185,8 +160,7 @@ class User
      *
      * @return User
      */
-    public function setActive($active)
-    {
+    public function setActive($active) {
         $this->active = $active;
 
         return $this;
@@ -197,56 +171,8 @@ class User
      *
      * @return int
      */
-    public function getActive()
-    {
+    public function getActive() {
         return $this->active;
     }
 
-    /**
-     * Set createdOn
-     *
-     * @param \DateTime $createdOn
-     *
-     * @return User
-     */
-    public function setCreatedOn($createdOn)
-    {
-        $this->createdOn = $createdOn;
-
-        return $this;
-    }
-
-    /**
-     * Get createdOn
-     *
-     * @return \DateTime
-     */
-    public function getCreatedOn()
-    {
-        return $this->createdOn;
-    }
-
-    /**
-     * Set modifiedOn
-     *
-     * @param \DateTime $modifiedOn
-     *
-     * @return User
-     */
-    public function setModifiedOn($modifiedOn)
-    {
-        $this->modifiedOn = $modifiedOn;
-
-        return $this;
-    }
-
-    /**
-     * Get modifiedOn
-     *
-     * @return \DateTime
-     */
-    public function getModifiedOn()
-    {
-        return $this->modifiedOn;
-    }
 }

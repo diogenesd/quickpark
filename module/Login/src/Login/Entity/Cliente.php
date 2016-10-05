@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="cliente", indexes={@ORM\Index(name="fk_cliente_user_idx", columns={"user_id"})})
  * @ORM\Entity(repositoryClass="Base\Entity\GlobalRepository")
  */
-class Cliente
-{
+class Cliente extends \Base\Entity\AbstractEntity {
+
     /**
      * @var int
      *
@@ -31,15 +31,12 @@ class Cliente
      */
     private $user;
 
-
-
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -50,8 +47,7 @@ class Cliente
      *
      * @return Cliente
      */
-    public function setUser(\Login\Entity\User $user = null)
-    {
+    public function setUser(\Login\Entity\User $user = null) {
         $this->user = $user;
 
         return $this;
@@ -62,8 +58,8 @@ class Cliente
      *
      * @return \Login\Entity\User
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->user;
     }
+
 }

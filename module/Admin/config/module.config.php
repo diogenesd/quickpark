@@ -91,16 +91,8 @@ return array(
         'serveOptions' => array(
             'minApp' => array(
                 'groups' => array(
-                    'admin-css' => array(
-                        getcwd() . '/public/libs/bootstrap/dist/css/bootstrap.min.css',
-                        getcwd() . '/public/libs/fontawesome/css/font-awesome.min.css',
-                        getcwd() . '/public/css/styles.css',
-                    ),
-                    'admin-js' => array(
-                        getcwd() . '/public/libs/jquery/dist/jquery.min.js',
-                        getcwd() . '/public/libs/bootstrap/dist/js/bootstrap.min.js',
-                        getcwd() . '/public/js/homer.js',
-                        getcwd() . '/public/js/scripts.js'
+                    'datatables-js' => array(
+                        getcwd() . '/public/libs/datatables/media/js/dataTables.bootstrap.js',
                     )
                 )
             )
