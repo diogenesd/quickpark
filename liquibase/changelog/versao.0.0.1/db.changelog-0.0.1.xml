@@ -6,21 +6,22 @@
     
     <changeSet id="1" author="rodrigo.heinzle">
         <sql>
+            --
+            -- Table structure for table `bilhete`
+            --
+
             DROP TABLE IF EXISTS `bilhete`;
             /*!40101 SET @saved_cs_client     = @@character_set_client */;
             /*!40101 SET character_set_client = utf8 */;
             CREATE TABLE `bilhete` (
             `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-            `estabelecimento_id` int(11) unsigned NOT NULL,
             `codigo` varchar(255) NOT NULL,
             `entrada` datetime NOT NULL,
             `saida` datetime DEFAULT NULL,
             `active` int(1) unsigned NOT NULL DEFAULT '1',
             `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
             `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            PRIMARY KEY (`id`),
-            KEY `fk_bilhete_estabelecimento_idx` (`estabelecimento_id`),
-            CONSTRAINT `fk_bilhete_estabelecimento` FOREIGN KEY (`estabelecimento_id`) REFERENCES `estabelecimento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+            PRIMARY KEY (`id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
             /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -67,7 +68,6 @@
             /*!40101 SET character_set_client = utf8 */;
             CREATE TABLE `configuracao` (
             `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-            `estabelecimento_id` int(11) unsigned NOT NULL,
             `tolerancia_entrada` int(11) NOT NULL,
             `tolerancia_saida` int(11) NOT NULL,
             `valor_hora` decimal(10,2) NOT NULL,
@@ -76,9 +76,7 @@
             `active` int(1) unsigned NOT NULL DEFAULT '1',
             `created_on` datetime NOT NULL,
             `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            PRIMARY KEY (`id`),
-            KEY `fk_configuracao_estabelecimento_idx` (`estabelecimento_id`),
-            CONSTRAINT `fk_configuracao_estabelecimento` FOREIGN KEY (`estabelecimento_id`) REFERENCES `estabelecimento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+            PRIMARY KEY (`id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
             /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -123,38 +121,6 @@
             UNLOCK TABLES;
 
             --
-            -- Table structure for table `estabelecimento`
-            --
-
-            DROP TABLE IF EXISTS `estabelecimento`;
-            /*!40101 SET @saved_cs_client     = @@character_set_client */;
-            /*!40101 SET character_set_client = utf8 */;
-            CREATE TABLE `estabelecimento` (
-            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-            `endereco_id` int(11) unsigned NOT NULL,
-            `nome` varchar(255) NOT NULL,
-            `cnpj` varchar(18) NOT NULL,
-            `active` int(1) unsigned NOT NULL DEFAULT '1',
-            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            PRIMARY KEY (`id`),
-            UNIQUE KEY `nome_UNIQUE` (`nome`),
-            UNIQUE KEY `cnpj_UNIQUE` (`cnpj`),
-            KEY `fk_estabelecimento_endereco_idx` (`endereco_id`),
-            CONSTRAINT `fk_estabelecimento_endereco` FOREIGN KEY (`endereco_id`) REFERENCES `endereco` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-            /*!40101 SET character_set_client = @saved_cs_client */;
-
-            --
-            -- Dumping data for table `estabelecimento`
-            --
-
-            LOCK TABLES `estabelecimento` WRITE;
-            /*!40000 ALTER TABLE `estabelecimento` DISABLE KEYS */;
-            /*!40000 ALTER TABLE `estabelecimento` ENABLE KEYS */;
-            UNLOCK TABLES;
-
-            --
             -- Table structure for table `forma_pagamento`
             --
 
@@ -191,11 +157,8 @@
             CREATE TABLE `funcionario` (
             `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
             `user_id` int(11) unsigned NOT NULL,
-            `estabelecimento_id` int(11) unsigned NOT NULL,
             PRIMARY KEY (`id`),
             KEY `fk_funcionario_user_idx` (`user_id`),
-            KEY `fk_funcionario_estabelecimento_idx` (`estabelecimento_id`),
-            CONSTRAINT `fk_funcionario_estabelecimento` FOREIGN KEY (`estabelecimento_id`) REFERENCES `estabelecimento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
             CONSTRAINT `fk_funcionario_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
             /*!40101 SET character_set_client = @saved_cs_client */;
@@ -463,7 +426,7 @@
             /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
             /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-            -- Dump completed on 2016-10-04 21:25:25
+            -- Dump completed on 2016-10-05  8:32:35
         </sql>
     </changeSet>
     
