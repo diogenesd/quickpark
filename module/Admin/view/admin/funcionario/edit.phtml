@@ -1,0 +1,121 @@
+<?php
+/*
+ * @var $form \Zend\Form\Form
+ */
+$form = $this->form;
+$formClass = $this->form;
+$this->formElementErrors()
+        ->setMessageOpenFormat('<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> ')
+        ->setMessageCloseString('<button type="button" class="close" data-dismiss="alert">x</buttton></div>')
+        ->render($form);
+
+$form->setAttribute('action', $this->url($this->route, array('controller' => $this->controller, 'action' => 'edit', 'id'=>$this->id)));
+$form->setAttribute('class', 'form-horizontal validate');
+$form->prepare();
+
+echo $this->form()->openTag($form); 
+
+echo $this->formInput($form->get($formClass->getToken()));
+
+$form->get('valor')->setValue(number_format($form->get('valor')->getValue(), 2, ",", ""));
+$form->get('valor_saque')->setValue(number_format($form->get('valor_saque')->getValue(), 2, ",", ""));
+?>
+<?php echo $this->partial('admin/funcionario/listheader.phtml');?>
+<div class="content animate-panel">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="hpanel">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('titulo'));?>
+                        <div class="col-sm-10">
+                            <?php echo $this->formInput($form->get('titulo')); ?>
+                            <?php echo $this->formElementErrors($form->get('titulo'));?>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('valor'));?>
+                        <div class="col-sm-3">
+                            <div class="input-group m-b">
+                                <span class="input-group-addon">R$</span>
+                                <?php echo $this->formInput($form->get('valor')); ?>
+                                <?php echo $this->formElementErrors($form->get('valor'));?>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('cota'));?>
+                        <div class="col-sm-3">
+                            <?php echo $this->formInput($form->get('cota')); ?>
+                            <?php echo $this->formElementErrors($form->get('cota'));?>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('percentual_indicacao'));?>
+                        <div class="col-sm-3">
+                            <?php echo $this->formInput($form->get('percentual_indicacao')); ?>
+                            <?php echo $this->formElementErrors($form->get('percentual_indicacao'));?>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('pontos'));?>
+                        <div class="col-sm-3">
+                            <?php echo $this->formInput($form->get('pontos')); ?>
+                            <?php echo $this->formElementErrors($form->get('pontos'));?>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('valor_saque'));?>
+                        <div class="col-sm-5">
+                            <div class="input-group m-b">
+                                <span class="input-group-addon">R$</span>
+                                <?php echo $this->formInput($form->get('valor_saque')); ?>
+                                <?php echo $this->formElementErrors($form->get('valor_saque'));?>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('hexadecimal'));?>
+                        <div class="col-sm-3">
+                            <?php echo $this->formInput($form->get('hexadecimal')); ?>
+                            <?php echo $this->formElementErrors($form->get('hexadecimal'));?>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <a href="<?php echo $this->url($this->route, array('controller'=>$this->controller));?>" class="btn btn-default waves-effect">Cancel</a>
+                        <button type="submit" class="btn btn-primary waves-effect">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+<?php echo $this->form()->closeTag(); ?>
+<?php
+$this->headScript()->captureStart();
+?>
+$(function(){
+    $("#percentual_indicacao").TouchSpin({
+        postfix: '%'
+    });
+    
+    $("#pontos").TouchSpin({
+        verticalbuttons: true,
+        min: 0,
+        max:1000
+    });
+    
+    $("#cota").TouchSpin({
+        verticalbuttons: true,
+        min: 0,
+        max:1000
+    });
+});
+<?php $this->headScript()->captureEnd();?>

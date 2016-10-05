@@ -45,7 +45,7 @@ class LoginForm extends AbstractForm {
                 'autofocus' => 'true'
             ),
             'options' => array(
-                'label' => 'Password',
+                'label' => 'Senha',
                 'label_attributes' => array(
                     'class' => 'control-label'
                 ),

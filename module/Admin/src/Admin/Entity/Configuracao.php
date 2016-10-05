@@ -7,11 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Configuracao
  *
- * @ORM\Table(name="configuracao", indexes={@ORM\Index(name="fk_configuracao_estabelecimento_idx", columns={"estabelecimento_id"})})
+ * @ORM\Table(name="configuracao")
  * @ORM\Entity(repositoryClass="Base\Entity\GlobalRepository")
  */
-class Configuracao
-{
+class Configuracao {
+
     /**
      * @var int
      *
@@ -78,24 +78,11 @@ class Configuracao
     private $modifiedOn = 'CURRENT_TIMESTAMP';
 
     /**
-     * @var \Admin\Entity\Estabelecimento
-     *
-     * @ORM\ManyToOne(targetEntity="Admin\Entity\Estabelecimento")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="estabelecimento_id", referencedColumnName="id")
-     * })
-     */
-    private $estabelecimento;
-
-
-
-    /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -106,8 +93,7 @@ class Configuracao
      *
      * @return Configuracao
      */
-    public function setToleranciaEntrada($toleranciaEntrada)
-    {
+    public function setToleranciaEntrada($toleranciaEntrada) {
         $this->toleranciaEntrada = $toleranciaEntrada;
 
         return $this;
@@ -118,8 +104,7 @@ class Configuracao
      *
      * @return int
      */
-    public function getToleranciaEntrada()
-    {
+    public function getToleranciaEntrada() {
         return $this->toleranciaEntrada;
     }
 
@@ -130,8 +115,7 @@ class Configuracao
      *
      * @return Configuracao
      */
-    public function setToleranciaSaida($toleranciaSaida)
-    {
+    public function setToleranciaSaida($toleranciaSaida) {
         $this->toleranciaSaida = $toleranciaSaida;
 
         return $this;
@@ -142,8 +126,7 @@ class Configuracao
      *
      * @return int
      */
-    public function getToleranciaSaida()
-    {
+    public function getToleranciaSaida() {
         return $this->toleranciaSaida;
     }
 
@@ -154,8 +137,7 @@ class Configuracao
      *
      * @return Configuracao
      */
-    public function setValorHora($valorHora)
-    {
+    public function setValorHora($valorHora) {
         $this->valorHora = $valorHora;
 
         return $this;
@@ -166,8 +148,7 @@ class Configuracao
      *
      * @return string
      */
-    public function getValorHora()
-    {
+    public function getValorHora() {
         return $this->valorHora;
     }
 
@@ -178,8 +159,7 @@ class Configuracao
      *
      * @return Configuracao
      */
-    public function setValorDiaria($valorDiaria)
-    {
+    public function setValorDiaria($valorDiaria) {
         $this->valorDiaria = $valorDiaria;
 
         return $this;
@@ -190,8 +170,7 @@ class Configuracao
      *
      * @return string
      */
-    public function getValorDiaria()
-    {
+    public function getValorDiaria() {
         return $this->valorDiaria;
     }
 
@@ -202,8 +181,7 @@ class Configuracao
      *
      * @return Configuracao
      */
-    public function setValorMensal($valorMensal)
-    {
+    public function setValorMensal($valorMensal) {
         $this->valorMensal = $valorMensal;
 
         return $this;
@@ -214,8 +192,7 @@ class Configuracao
      *
      * @return string
      */
-    public function getValorMensal()
-    {
+    public function getValorMensal() {
         return $this->valorMensal;
     }
 
@@ -226,8 +203,7 @@ class Configuracao
      *
      * @return Configuracao
      */
-    public function setActive($active)
-    {
+    public function setActive($active) {
         $this->active = $active;
 
         return $this;
@@ -238,8 +214,7 @@ class Configuracao
      *
      * @return int
      */
-    public function getActive()
-    {
+    public function getActive() {
         return $this->active;
     }
 
@@ -250,8 +225,7 @@ class Configuracao
      *
      * @return Configuracao
      */
-    public function setCreatedOn($createdOn)
-    {
+    public function setCreatedOn($createdOn) {
         $this->createdOn = $createdOn;
 
         return $this;
@@ -262,8 +236,7 @@ class Configuracao
      *
      * @return \DateTime
      */
-    public function getCreatedOn()
-    {
+    public function getCreatedOn() {
         return $this->createdOn;
     }
 
@@ -274,8 +247,7 @@ class Configuracao
      *
      * @return Configuracao
      */
-    public function setModifiedOn($modifiedOn)
-    {
+    public function setModifiedOn($modifiedOn) {
         $this->modifiedOn = $modifiedOn;
 
         return $this;
@@ -286,32 +258,7 @@ class Configuracao
      *
      * @return \DateTime
      */
-    public function getModifiedOn()
-    {
+    public function getModifiedOn() {
         return $this->modifiedOn;
-    }
-
-    /**
-     * Set estabelecimento
-     *
-     * @param \Admin\Entity\Estabelecimento $estabelecimento
-     *
-     * @return Configuracao
-     */
-    public function setEstabelecimento(\Admin\Entity\Estabelecimento $estabelecimento = null)
-    {
-        $this->estabelecimento = $estabelecimento;
-
-        return $this;
-    }
-
-    /**
-     * Get estabelecimento
-     *
-     * @return \Admin\Entity\Estabelecimento
-     */
-    public function getEstabelecimento()
-    {
-        return $this->estabelecimento;
     }
 }

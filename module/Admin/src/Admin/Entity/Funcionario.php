@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Funcionario
  *
- * @ORM\Table(name="funcionario", indexes={@ORM\Index(name="fk_funcionario_user_idx", columns={"user_id"})})
+ * @ORM\Table(name="funcionario")
  * @ORM\Entity(repositoryClass="Base\Entity\GlobalRepository")
  */
 class Funcionario

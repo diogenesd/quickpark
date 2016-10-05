@@ -17,7 +17,6 @@ class IndexController extends AbstractController {
 
     public function indexAction() {
         $this->layout()->tituloTela = 'Dashboards';
-            $this->flashMessenger()->addErrorMessage("rola");
         return new ViewModel();
     }
 

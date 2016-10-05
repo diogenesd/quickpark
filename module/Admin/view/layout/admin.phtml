@@ -128,7 +128,6 @@
                 <span class="pull-right text-muted">© Copyright 2016 QuickPark Ltda. </span></a>
             </footer>
         </div>
-<script type="text/javascript">var baseUrl = '<?php echo $this->basePath(); ?>/';</script>
     </body>
     <?php // $this->headScript()->appendFile($this->basePath('/min?g=login-js')); ?>
     <?php $this->headScript()->appendFile($this->basePath('/libs/jquery/dist/jquery.min.js')); ?>
@@ -138,19 +137,7 @@
     <?php $this->headScript()->appendFile($this->basePath('/libs/metisMenu/dist/metisMenu.min.js')); ?>
     <?php $this->headScript()->appendFile($this->basePath('/js/homer.js')); ?>
     <?php $this->headScript()->appendFile($this->basePath('/libs/toastr/build/toastr.min.js')); ?>
+    <?php $this->headScript()->appendFile($this->basePath('/js/scripts.js')); ?>
     <?php echo $this->headScript(); ?>
+    <?php echo $this->inlineScript(); ?>
 </html>
-
-<!--<script>
-    $(function () {
-        // Toastr options
-        toastr.options = {
-            "debug": false,
-            "newestOnTop": false,
-            "positionClass": "toast-top-center",
-            "closeButton": true,
-            "toastClass": "animated fadeInDown"
-        };
-
-    });
-</script>-->

@@ -1,0 +1,80 @@
+<?php
+/*
+ * @var $form \Zend\Form\Form
+ */
+$form = $this->form;
+$formClass = $this->form;
+$this->formElementErrors()
+        ->setMessageOpenFormat('<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> ')
+        ->setMessageCloseString('<button type="button" class="close" data-dismiss="alert">x</buttton></div>')
+        ->render($form);
+
+$form->setAttribute('action', $this->url($this->route, array('controller' => $this->controller, 'action' => 'insert')));
+$form->setAttribute('class', 'form-horizontal validate');
+$form->setAttribute('envtype', 'multipart/form-data');
+$form->prepare();
+
+echo $this->form()->openTag($form); 
+
+echo $this->formInput($form->get($formClass->getToken()));
+
+?>
+<?php echo $this->partial('admin/funcionario/listheader.phtml');?>
+<div class="content animate-panel">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="hpanel">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('nome'));?>
+                        <div class="col-sm-10">
+                            <?php echo $this->formInput($form->get('nome')); ?>
+                            <?php echo $this->formElementErrors($form->get('nome'));?>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('cpf'));?>
+                        <div class="col-sm-3">
+                            <div class="input-group m-b">
+                                <span class="input-group-addon">R$</span>
+                                <?php echo $this->formInput($form->get('cpf')); ?>
+                                <?php echo $this->formElementErrors($form->get('cpf'));?>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('email'));?>
+                        <div class="col-sm-3">
+                            <?php echo $this->formInput($form->get('email')); ?>
+                            <?php echo $this->formElementErrors($form->get('email'));?>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('senha'));?>
+                        <div class="col-sm-3">
+                            <?php echo $this->formInput($form->get('senha')); ?>
+                            <?php echo $this->formElementErrors($form->get('senha'));?>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('pontos'));?>
+                        <div class="col-sm-3">
+                            <?php echo $this->formInput($form->get('pontos')); ?>
+                            <?php echo $this->formElementErrors($form->get('pontos'));?>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <a href="<?php echo $this->url($this->route, array('controller'=>$this->controller));?>" class="btn btn-default waves-effect">Cancelar</a>
+                        <button type="submit" class="btn btn-primary waves-effect">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+<?php echo $this->form()->closeTag(); ?>

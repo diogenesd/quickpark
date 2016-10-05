@@ -7,11 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Bilhete
  *
- * @ORM\Table(name="bilhete", indexes={@ORM\Index(name="fk_bilhete_estabelecimento_idx", columns={"estabelecimento_id"})})
+ * @ORM\Table(name="bilhete")
  * @ORM\Entity(repositoryClass="Base\Entity\GlobalRepository")
  */
-class Bilhete
-{
+class Bilhete {
+
     /**
      * @var int
      *
@@ -64,24 +64,11 @@ class Bilhete
     private $modifiedOn = 'CURRENT_TIMESTAMP';
 
     /**
-     * @var \Ticket\Entity\Estabelecimento
-     *
-     * @ORM\ManyToOne(targetEntity="Ticket\Entity\Estabelecimento")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="estabelecimento_id", referencedColumnName="id")
-     * })
-     */
-    private $estabelecimento;
-
-
-
-    /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -92,8 +79,7 @@ class Bilhete
      *
      * @return Bilhete
      */
-    public function setCodigo($codigo)
-    {
+    public function setCodigo($codigo) {
         $this->codigo = $codigo;
 
         return $this;
@@ -104,8 +90,7 @@ class Bilhete
      *
      * @return string
      */
-    public function getCodigo()
-    {
+    public function getCodigo() {
         return $this->codigo;
     }
 
@@ -116,8 +101,7 @@ class Bilhete
      *
      * @return Bilhete
      */
-    public function setEntrada($entrada)
-    {
+    public function setEntrada($entrada) {
         $this->entrada = $entrada;
 
         return $this;
@@ -128,8 +112,7 @@ class Bilhete
      *
      * @return \DateTime
      */
-    public function getEntrada()
-    {
+    public function getEntrada() {
         return $this->entrada;
     }
 
@@ -140,8 +123,7 @@ class Bilhete
      *
      * @return Bilhete
      */
-    public function setSaida($saida)
-    {
+    public function setSaida($saida) {
         $this->saida = $saida;
 
         return $this;
@@ -152,8 +134,7 @@ class Bilhete
      *
      * @return \DateTime
      */
-    public function getSaida()
-    {
+    public function getSaida() {
         return $this->saida;
     }
 
@@ -164,8 +145,7 @@ class Bilhete
      *
      * @return Bilhete
      */
-    public function setActive($active)
-    {
+    public function setActive($active) {
         $this->active = $active;
 
         return $this;
@@ -176,8 +156,7 @@ class Bilhete
      *
      * @return int
      */
-    public function getActive()
-    {
+    public function getActive() {
         return $this->active;
     }
 
@@ -188,8 +167,7 @@ class Bilhete
      *
      * @return Bilhete
      */
-    public function setCreatedOn($createdOn)
-    {
+    public function setCreatedOn($createdOn) {
         $this->createdOn = $createdOn;
 
         return $this;
@@ -200,8 +178,7 @@ class Bilhete
      *
      * @return \DateTime
      */
-    public function getCreatedOn()
-    {
+    public function getCreatedOn() {
         return $this->createdOn;
     }
 
@@ -212,8 +189,7 @@ class Bilhete
      *
      * @return Bilhete
      */
-    public function setModifiedOn($modifiedOn)
-    {
+    public function setModifiedOn($modifiedOn) {
         $this->modifiedOn = $modifiedOn;
 
         return $this;
@@ -224,32 +200,8 @@ class Bilhete
      *
      * @return \DateTime
      */
-    public function getModifiedOn()
-    {
+    public function getModifiedOn() {
         return $this->modifiedOn;
     }
 
-    /**
-     * Set estabelecimento
-     *
-     * @param \Ticket\Entity\Estabelecimento $estabelecimento
-     *
-     * @return Bilhete
-     */
-    public function setEstabelecimento(\Ticket\Entity\Estabelecimento $estabelecimento = null)
-    {
-        $this->estabelecimento = $estabelecimento;
-
-        return $this;
-    }
-
-    /**
-     * Get estabelecimento
-     *
-     * @return \Ticket\Entity\Estabelecimento
-     */
-    public function getEstabelecimento()
-    {
-        return $this->estabelecimento;
-    }
 }

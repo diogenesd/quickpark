@@ -2,7 +2,7 @@
 
 $this->inlineScript()->captureStart();
 echo <<<JS
-alert('rola');
+$(document).ready(function () {
 JS;
 
 if ($this->flashMessenger()->hasErrorMessages()) {
