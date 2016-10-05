@@ -9,34 +9,6 @@ return array(
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
             // using the path /login/:controller/:action
-            'login' => array(
-                'type' => 'Literal',
-                'options' => array(
-                    'route' => '/login',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Login\Controller',
-                        'controller' => 'Index',
-                        'action' => 'index',
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type' => 'Segment',
-                        'options' => array(
-                            'route' => '/[:controller[/:action[/:id[/:active]]]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'id' => '\d+',
-                                'active' => '\d+',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    )
-                ),
-            ),
             'home' => array(
                 'type' => 'Literal',
                 'options' => array(
