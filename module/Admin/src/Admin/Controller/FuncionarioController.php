@@ -35,9 +35,9 @@ class FuncionarioController extends AbstractController {
 
         $builder = new TableBuilder($this->getEm($this->entity), $params, null, $renderer);
         $builder
-                ->from('Admin\Entity\Funcionario', 'f')
-                ->join('f.user', 'u')
-                ->add('number', 'f.id', null, array(
+                ->from('Login\Entity\User', 'u')
+//                ->join('f.user', 'u')
+                ->add('number', 'u.id', null, array(
                     'template' => '<div class="dataTablesMore">+</div>'
                         )
                 )
