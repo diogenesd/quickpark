@@ -97,8 +97,9 @@ return array(
                         getcwd() . '/public/libs/slimScroll/jquery.slimscroll.min.js',
                         getcwd() . '/public/libs/bootstrap/dist/js/bootstrap.min.js',
                         getcwd() . '/public/libs/metisMenu/dist/metisMenu.min.js',
-                        getcwd() . '/public/js/homer.js',
+                        getcwd() . '/public/libs/jquery-validation/jquery.validate.min.js',
                         getcwd() . '/public//libs/toastr/build/toastr.min.js',
+                        getcwd() . '/public/js/homer.js',
                         getcwd() . '/public/js/scripts.js'
                     )
                 )

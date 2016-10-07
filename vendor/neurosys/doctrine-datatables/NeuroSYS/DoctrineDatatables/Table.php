@@ -4,6 +4,7 @@ namespace NeuroSYS\DoctrineDatatables;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\Common\Collections\Criteria;
 use NeuroSYS\DoctrineDatatables\Field\Entity;
 use NeuroSYS\DoctrineDatatables\Field\AbstractField;
 use NeuroSYS\DoctrineDatatables\Renderer\PhpRenderer;
@@ -61,6 +62,8 @@ class Table extends Entity
     private $entities = array();
 
     private $basePropertyPath;
+    
+    private $where;
 
     /**
      * @param Table                  $name
@@ -71,7 +74,7 @@ class Table extends Entity
      *
      * @throws \Exception
      */
-    public function __construct($name, $alias, EntityManager $em, Request $request, RendererInterface $renderer = null)
+    public function __construct($name, $alias, EntityManager $em, Request $request, RendererInterface $renderer = null, $where = null)
     {
         if (!$alias) {
             throw new \Exception("Alias is required");
@@ -84,6 +87,7 @@ class Table extends Entity
         $this->entities[$alias] = $this;
         $this->em       = $em;
         $this->request  = $request;
+        $this->where  = $where;
         $this->setRenderer($renderer);
         $this->setMaxResults($request->get('iDisplayLength'));
         $this->setFirstResult($request->get('iDisplayStart'));
@@ -285,7 +289,23 @@ class Table extends Entity
         return $this->em;
     }
 
-
+    protected function addWhere(QueryBuilder $qb)
+    {
+        if($this->where){
+            foreach($this->where as $field=>$value){
+                $expr = Criteria::expr();
+                $criteria = Criteria::create();
+                if(is_array($value)){
+                    $criteria->andWhere($expr->{$value['func']}($field, $value['valor']));
+                }else{
+                    $criteria->andWhere($expr->eq($field, $value));
+                }
+                $qb->addCriteria ($criteria);
+            }
+        }
+        return $this; 
+    }
+            
     protected function addJoin(QueryBuilder $qb)
     {
         foreach ($this->entities as $entity) {
@@ -339,11 +359,11 @@ class Table extends Entity
     public function getResultQueryBuilder()
     {
         $qb = clone $this->getQueryBuilder();
-
         $this
             ->select($qb)
             ->addFrom($qb)
             ->addJoin($qb)
+            ->addWhere($qb)
             ->addFilter($qb)
             ->addFilterSearchAll($qb)
             ->limit($qb)
@@ -365,6 +385,7 @@ class Table extends Entity
         $this
             ->addFrom($qb)
             ->addJoin($qb)
+            ->addWhere($qb)
         ;
         $qb->resetDQLPart('groupBy');
 
@@ -389,6 +410,7 @@ class Table extends Entity
         $this
             ->addFrom($qb)
             ->addJoin($qb)
+            ->addWhere($qb)
             ->addFilter($qb)
         ;
         $qb->resetDQLPart('groupBy');
@@ -467,6 +489,7 @@ class Table extends Entity
                 $or->add($field->filterSearchAll($qb));   
             }
         }
+        
         if ($or->count() > 0) {
             $qb->andWhere($or);
         }

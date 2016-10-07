@@ -59,6 +59,8 @@ abstract class AbstractField
 
     protected $context;
 
+    protected $function;
+
     public function __construct(Table $table, $options = array())
     {
         $this->options = $options;
@@ -180,10 +182,23 @@ abstract class AbstractField
         return $this->context;
     }
 
+    public function setFunction($function)
+    {
+        $this->function = $function;
+    }
+
+    public function getFunction()
+    {
+        return $this->function;
+    }
+
     public function getSelectPaths()
     {
         if (isset($this->options['context'])) {
             return array(explode('.', $this->options['context']));
+        }
+        if (isset($this->options['function'])) {
+            return array(1,1); 
         }
         $paths = array();
         foreach ($this->getSelect() as $entityAlias => $select) {
@@ -200,7 +215,6 @@ abstract class AbstractField
                 $paths[] = $path;
             }
         }
-
         return $paths;
     }
 
@@ -255,9 +269,13 @@ abstract class AbstractField
     public function format($values, $value = null)
     {
         if ($this->template) {
-            return $this->getTable()->getRenderer()->render($this->template, array('values' => $values, 'value' => $value, 'field' => $this));
+            $retorno = $this->getTable()->getRenderer()->render($this->template, array('values' => $values, 'value' => $value, 'field' => $this));
+//            die($retorno);
+            return $retorno;
         }
-
+        if ($this->function) {
+            return eval('$value = '.$value['id'] . ';' . $this->function);
+        }
         return $value;
     }
 

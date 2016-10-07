@@ -38,7 +38,9 @@ class TableBuilder
 
     protected $parent;
 
-    public function __construct(EntityManager $em, array $request, FieldRegistry $registry = null, RendererInterface $renderer = null)
+    protected $where;
+
+    public function __construct(EntityManager $em, array $request, FieldRegistry $registry = null, RendererInterface $renderer = null, $where = null)
     {
         $this->em       = $em;
         if (null === $registry) {
@@ -47,6 +49,7 @@ class TableBuilder
         $this->registry  = $registry;
         $this->request   = new Request($request);
         $this->renderer  = $renderer;
+        $this->where  = $where;
     }
 
     public function getQueryBuilder()
@@ -66,7 +69,7 @@ class TableBuilder
      */
     public function from($className, $alias)
     {
-        $table = new Table($className, $alias, $this->em, $this->request, $this->renderer);
+        $table = new Table($className, $alias, $this->em, $this->request, $this->renderer, $this->where);
         //$table->from($className, $alias);
 
         $this->setTable($table);
@@ -91,7 +94,7 @@ class TableBuilder
             /**
              * @var \Doctrine\ORM\Query\Expr\From $from
              */
-            $this->table = new Table($from->getFrom(), $from->getAlias(), $this->em, $this->request, $this->renderer);
+            $this->table = new Table($from->getFrom(), $from->getAlias(), $this->em, $this->request, $this->renderer, $this->where);
         }
         $this->getTable()->setQueryBuilder($qb);
 
@@ -120,7 +123,7 @@ class TableBuilder
         //$field->setIndex($this->getCurrentIndex());
         //$field->setParent($this->getTable());
 
-        $builder = new TableBuilder($this->em, $this->request->all(), $this->registry, $this->renderer);
+        $builder = new TableBuilder($this->em, $this->request->all(), $this->registry, $this->renderer, $this->where);
         $this->setIndex($this->getCurrentIndex());
         $builder->setTable($this->getTable());
 
@@ -256,6 +259,9 @@ class TableBuilder
         }
         if (isset($options['context'])) {
             $field->setContext($options['context']);
+        }
+        if (isset($options['function'])) {
+            $field->setFunction($options['function']);
         }
         $this->getTable()->setField($name, $field);
 

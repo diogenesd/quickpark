@@ -35,9 +35,9 @@ class FuncionarioController extends AbstractController {
 
         $builder = new TableBuilder($this->getEm($this->entity), $params, null, $renderer);
         $builder
-                ->from('Login\Entity\User', 'u')
-//                ->join('f.user', 'u')
-                ->add('number', 'u.id', null, array(
+                ->from('Admin\Entity\Funcionario', 'f')
+                ->join('f.user', 'u')
+                ->add('number', 'f.id', null, array(
                     'template' => '<div class="dataTablesMore">+</div>'
                         )
                 )
@@ -48,15 +48,15 @@ class FuncionarioController extends AbstractController {
                     'template' => '{% if value %}<span class="label label-success" title="Ativo">Ativo</span>{% else %}<span class="label label-danger" title="Inativo">Inativo</span>{% endif %}'
                         )
                 )
-                ->add("text", "u.active", null, array(
+                ->add("text", "f.user", null, array(
                     'template' => '' .
                     '<div class="dropdown">
                     <button class="btn btn-icon btn-rounded btn-primary waves-effect dropdown-toggle" type="button" id="dropdownMenu{{values.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-cog"></i></button>                   
-                    <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu{{values.id}}">
-                        <li><a href="' . $this->url()->fromRoute($this->route, array('controller' => $this->controller, 'action' => 'edit')) . '/{{values.id}}"> <i class="fa fa-pencil"></i> Editar</a></li>
+                    <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu{{value.getId()}}">
+                        <li><a href="' . $this->url()->fromRoute($this->route, array('controller' => $this->controller, 'action' => 'edit')) . '/{{ value.getId() }}"> <i class="fa fa-pencil"></i> Editar</a></li>
                         <li role="separator" class="divider"></li>
                         <li>
-                            <a href="' . $this->url()->fromRoute($this->route, array('controller' => $this->controller, 'action' => 'activeset')) . '/{{values.id}}/{% if value %}0{% else %}1{% endif %}"> <i class="fa fa-{% if value %}remove{% else %}check{% endif %}"></i> {% if value %}Desativar{% else %}Ativar{% endif %}</a>
+                            <a href="' . $this->url()->fromRoute($this->route, array('controller' => $this->controller, 'action' => 'activeset')) . '/{{ value.getId() }}/{% if value.getActive() %}0{% else %}1{% endif %}"> <i class="fa fa-{% if value.getActive() %}remove{% else %}check{% endif %}"></i> {% if value.getActive() %}Desativar{% else %}Ativar{% endif %}</a>
                         </li>
                     </ul>
                   </div>'
@@ -65,7 +65,7 @@ class FuncionarioController extends AbstractController {
         ;
 
         $response = $builder->getTable()
-                ->getResponseArray() // hydrate entity, defaults to array
+                ->getResponseArray(\NeuroSYS\DoctrineDatatables\Table::HYDRATE_ENTITY) // hydrate entity, defaults to array
         ;
 
         $result = new JsonModel($response);
