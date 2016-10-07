@@ -1,18 +1,18 @@
 <?php
 
-namespace Admin\Form;
+namespace Login\Form;
 
 use Base\Form\AbstractForm;
 use Zend\Form\Form;
 use Zend\Form\Element;
-use Admin\Form\Filter\FuncionarioFilter;
+use Login\Form\Filter\ClienteFilter;
 
 /**
- * Description of FuncionarioForm
+ * Description of ClienteForm
  *
- * @author mauricioschmitz
+ * @author rodrigoheinzle
  */
-class FuncionarioForm extends AbstractForm {
+class ClienteForm extends AbstractForm {
 
     protected $em;
 
@@ -22,7 +22,7 @@ class FuncionarioForm extends AbstractForm {
 
         parent::__construct(null);
 
-        $this->setInputFilter(new FuncionarioFilter());
+        $this->setInputFilter(new ClienteFilter());
 
         $this->add(array(
             'name' => 'nome',

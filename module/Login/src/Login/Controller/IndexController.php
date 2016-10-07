@@ -19,10 +19,11 @@ class IndexController extends AbstractController {
 
     public function indexAction() {
         $nlogado = $this->params()->fromRoute('nlogado', 0);
-        if (is_string($this->form))
+        if (is_string($this->form)) {
             $form = new $this->form();
-        else
+        } else {
             $form = $this->form;
+        }
 
         $request = $this->getRequest();
         $errors = null;

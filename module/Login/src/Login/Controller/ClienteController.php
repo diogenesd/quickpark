@@ -5,22 +5,17 @@ namespace Login\Controller;
 use Base\Controller\AbstractController;
 use Zend\View\Model\ViewModel;
 
-class UserController extends AbstractController
+class ClienteController extends AbstractController
 {
     public function __construct() {
-        $this->form = 'Login\Form\User';
-        $this->controller = 'User';
-        $this->route = 'login/default';
-        $this->service = 'Login\Service\UserService';
-        $this->entity = 'Login\Entity\User';
+        $this->form = 'Login\Form\ClienteForm';
+        $this->controller = 'Cliente';
+        $this->route = 'cadastro';
+        $this->service = 'Login\Service\ClienteService';
+        $this->entity = 'Login\Entity\Cliente';
     }
     
     public function indexAction()
-    {
-        return new ViewModel();
-    }
-    
-    public function insertAction()
     {
         return new ViewModel();
     }

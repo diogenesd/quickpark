@@ -10,7 +10,7 @@ use Admin\Form\Filter\FuncionarioFilter;
 /**
  * Description of FuncionarioForm
  *
- * @author mauricioschmitz
+ * @author rodrigoheinzle
  */
 class FuncionarioForm extends AbstractForm {
 

@@ -5,7 +5,7 @@ namespace Base\Controller;
 /**
  * Description of AbstractController
  *
- * @author mauricioschmitz
+ * @author rodrigoheinzle
  */
 use Zend\Paginator\Paginator;
 use Zend\Paginator\Adapter\ArrayAdapter;

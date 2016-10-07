@@ -13,7 +13,6 @@ class FuncionarioController extends AbstractController {
     public function __construct() {
         $this->form = 'Admin\Form\FuncionarioForm';
         $this->controller = 'funcionario';
-        $this->controllerUser = 'user';
         $this->service = 'Admin\Service\FuncionarioService';
         $this->entity = 'Admin\Entity\Funcionario';
         $this->entityUser = 'Login\Entity\User';
