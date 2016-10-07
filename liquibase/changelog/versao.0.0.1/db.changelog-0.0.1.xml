@@ -7,6 +7,38 @@
     <changeSet id="1" author="rodrigo.heinzle">
         <sql>
             --
+            -- Table structure for table `user`
+            --
+
+            DROP TABLE IF EXISTS `user`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `user` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `email` varchar(255) NOT NULL,
+            `password` varchar(255) NOT NULL,
+            `nome` varchar(255) NOT NULL,
+            `cpf` varchar(11) NOT NULL,
+            `active` int(1) unsigned NOT NULL DEFAULT '1',
+            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`),
+            UNIQUE KEY `email_UNIQUE` (`email`),
+            UNIQUE KEY `cpf_UNIQUE` (`cpf`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `user`
+            --
+
+            LOCK TABLES `user` WRITE;
+            /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+            INSERT INTO `user` VALUES (1,'heinzle.rodrigo@gmail.com','d7d833534a39afbac08ec536bed7ae9eeac45638','Rodrigo Heinzle','05660997996',1,'2016-09-29 18:25:47','2016-09-30 13:32:33'),(2,'master@gmail.com','d7d833534a39afbac08ec536bed7ae9eeac45638','Master','48006947015',1,'2016-09-29 18:25:47','2016-09-29 18:25:47');
+            /*!40000 ALTER TABLE `user` ENABLE KEYS */;
+            UNLOCK TABLES;
+            
+            --
             -- Table structure for table `bilhete`
             --
 
@@ -211,6 +243,33 @@
             UNLOCK TABLES;
 
             --
+            -- Table structure for table `resource`
+            --
+
+            DROP TABLE IF EXISTS `resource`;
+            /*!40101 SET @saved_cs_client     = @@character_set_client */;
+            /*!40101 SET character_set_client = utf8 */;
+            CREATE TABLE `resource` (
+            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+            `resource_name` varchar(255) NOT NULL,
+            `active` int(1) unsigned NOT NULL DEFAULT '1',
+            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+            /*!40101 SET character_set_client = @saved_cs_client */;
+
+            --
+            -- Dumping data for table `resource`
+            --
+
+            LOCK TABLES `resource` WRITE;
+            /*!40000 ALTER TABLE `resource` DISABLE KEYS */;
+            INSERT INTO `resource` VALUES (1,'Admin\\Controller\\Index',1,'2016-09-29 18:25:47','2016-09-29 18:25:47'),(2,'Login\\Controller\\Index',1,'2016-09-29 18:25:47','2016-09-29 18:25:47'),(3,'Admin\\Controller\\Funcionario',1,'2016-09-29 18:25:47','2016-10-04 20:46:22');
+            /*!40000 ALTER TABLE `resource` ENABLE KEYS */;
+            UNLOCK TABLES;
+            
+            --
             -- Table structure for table `permission`
             --
 
@@ -238,33 +297,6 @@
             /*!40000 ALTER TABLE `permission` DISABLE KEYS */;
             INSERT INTO `permission` VALUES (1,1,'index',1,'2016-09-29 18:25:47','2016-09-29 18:25:47'),(2,3,'index',1,'2016-09-29 18:25:47','2016-09-29 18:25:47');
             /*!40000 ALTER TABLE `permission` ENABLE KEYS */;
-            UNLOCK TABLES;
-
-            --
-            -- Table structure for table `resource`
-            --
-
-            DROP TABLE IF EXISTS `resource`;
-            /*!40101 SET @saved_cs_client     = @@character_set_client */;
-            /*!40101 SET character_set_client = utf8 */;
-            CREATE TABLE `resource` (
-            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-            `resource_name` varchar(255) NOT NULL,
-            `active` int(1) unsigned NOT NULL DEFAULT '1',
-            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            PRIMARY KEY (`id`)
-            ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-            /*!40101 SET character_set_client = @saved_cs_client */;
-
-            --
-            -- Dumping data for table `resource`
-            --
-
-            LOCK TABLES `resource` WRITE;
-            /*!40000 ALTER TABLE `resource` DISABLE KEYS */;
-            INSERT INTO `resource` VALUES (1,'Admin\\Controller\\Index',1,'2016-09-29 18:25:47','2016-09-29 18:25:47'),(2,'Login\\Controller\\Index',1,'2016-09-29 18:25:47','2016-09-29 18:25:47'),(3,'Admin\\Controller\\Funcionario',1,'2016-09-29 18:25:47','2016-10-04 20:46:22');
-            /*!40000 ALTER TABLE `resource` ENABLE KEYS */;
             UNLOCK TABLES;
 
             --
@@ -327,38 +359,6 @@
             UNLOCK TABLES;
 
             --
-            -- Table structure for table `user`
-            --
-
-            DROP TABLE IF EXISTS `user`;
-            /*!40101 SET @saved_cs_client     = @@character_set_client */;
-            /*!40101 SET character_set_client = utf8 */;
-            CREATE TABLE `user` (
-            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-            `email` varchar(255) NOT NULL,
-            `password` varchar(255) NOT NULL,
-            `nome` varchar(255) NOT NULL,
-            `cpf` varchar(11) NOT NULL,
-            `active` int(1) unsigned NOT NULL DEFAULT '1',
-            `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            `modified_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            PRIMARY KEY (`id`),
-            UNIQUE KEY `email_UNIQUE` (`email`),
-            UNIQUE KEY `cpf_UNIQUE` (`cpf`)
-            ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-            /*!40101 SET character_set_client = @saved_cs_client */;
-
-            --
-            -- Dumping data for table `user`
-            --
-
-            LOCK TABLES `user` WRITE;
-            /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-            INSERT INTO `user` VALUES (1,'heinzle.rodrigo@gmail.com','d7d833534a39afbac08ec536bed7ae9eeac45638','Rodrigo Heinzle','05660997996',1,'2016-09-29 18:25:47','2016-09-30 13:32:33'),(2,'master@gmail.com','d7d833534a39afbac08ec536bed7ae9eeac45638','Master','48006947015',1,'2016-09-29 18:25:47','2016-09-29 18:25:47');
-            /*!40000 ALTER TABLE `user` ENABLE KEYS */;
-            UNLOCK TABLES;
-
-            --
             -- Table structure for table `user_role`
             --
 
@@ -416,17 +416,7 @@
             INSERT INTO `whitelist` VALUES (1,'Base/Controller/Error-index',1,'2016-09-29 18:25:47','2016-09-29 18:25:47'),(2,'Base/Controller/Error-permissiondenied',1,'2016-09-29 18:25:47','2016-09-29 18:25:47'),(3,'TpMinifyProxy-index',1,'2016-09-29 18:25:47','2016-09-29 18:25:47');
             /*!40000 ALTER TABLE `whitelist` ENABLE KEYS */;
             UNLOCK TABLES;
-            /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-            /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-            /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-            /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-            /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-            /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-            /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-            /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
-            -- Dump completed on 2016-10-05  8:32:35
         </sql>
     </changeSet>
     
